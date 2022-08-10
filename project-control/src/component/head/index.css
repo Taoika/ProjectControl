@@ -1,0 +1,18 @@
+/* 导航栏样式 */
+.head-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #fff;
+}
+
+.head-logo {
+    font-size: 24px;
+    font-weight: 700;
+    color: #333333;
+}
+
+.head-logo>img {
+    width: 65px;
+    height: 50px;
+}
+
