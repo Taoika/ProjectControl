@@ -11,7 +11,7 @@ export default function Head() {
     const items1 = [
         {
             key:1,
-            label:  <Link to=''><Badge count='!'></Badge></Link>
+            label:  <Link to='/dlzc'><Badge count='!'></Badge></Link>
         },
         {
             key:2,
