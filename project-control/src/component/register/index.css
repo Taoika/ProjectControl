@@ -1,0 +1,63 @@
+.register-register {
+    position: absolute;
+    z-index: 2;
+    width: 542px;
+    height: 432px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 20%;
+
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.register-fix {
+    margin-top: 40px;
+    margin-left: 60px;
+    width: 400px;
+    height: 300px;
+}
+
+.register-registerName {
+    width: 542px;
+    height: 45px;
+
+    padding-left: 20px;
+    padding-top: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.035em;
+    color: #FFFFFF;
+
+    /* 主色 */
+
+    background: #3D6DB5;
+    border-radius: 12px 12px 0px 0px;
+}
+
+.register-cancelBtn:hover {
+    cursor: pointer;
+    color: 'white'
+}
+
+.register-cancelBtn {
+    position: absolute;
+    left: 92%;
+}
+
+.register-mask {
+    position: absolute;
+    display: block;
+    /* opacity: 0.6; */
+    top: 0;
+    ;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+}
