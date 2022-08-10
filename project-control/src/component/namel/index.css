@@ -1,0 +1,28 @@
+ .login-form {
+     /* width: 100%; */
+     position: absolute;
+     left: 69%;
+     bottom: 25%;
+     width: 300px;
+     max-width: 300px;
+ }
+
+ .login-form-forgot {
+     float: right;
+ }
+
+ .ant-col-rtl .login-form-forgot {
+     float: left;
+ }
+
+ .login-form-button {
+     width: 100%;
+ }
+
+ .namel-alert {
+     position: absolute;
+     left: 576px;
+     top: 100px;
+     height: 54px;
+     width: 434px;
+ }
