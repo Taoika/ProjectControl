@@ -1,8 +1,7 @@
 import { Layout, Menu } from 'antd';
 import React from 'react'
 import './index.css'
-
-
+import logo from '../../assets/images/projectcontrol.png'
 
 export default function Head() {
 
@@ -16,7 +15,10 @@ export default function Head() {
     return (
         <Layout>
             <Header className="header">
-                <div className="logo" />
+                <div className="logo">
+                    <img src={logo} alt="项目管理平台" />
+                    项目管理平台
+                </div>
                 <Menu mode="horizontal" defaultSelectedKeys={['1']} items={items1} />
             </Header>
         </Layout>
