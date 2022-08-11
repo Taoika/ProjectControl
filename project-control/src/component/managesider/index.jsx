@@ -14,7 +14,7 @@ export default function ManageSider() {
     },
     {
       key:2,
-      label:'发布审核',
+      label:<Link to='projectaduit'>发布审核</Link>
     }
   ];
 

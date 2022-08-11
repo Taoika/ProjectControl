@@ -3,7 +3,7 @@
     display: flex;
     flex-wrap: wrap;
     align-items: start;
-    padding: 55px 0;
+    padding: 70px 0;
     border: 1px solid rgba(0,0,0,.1);
     overflow: scroll;
 }
@@ -13,7 +13,7 @@
     justify-content: end;
     position: fixed;
     top: 90px;
-    right: 35px;
+    right: 60px;
     width: 100%;
     padding: 0 30px;
 }
@@ -23,8 +23,10 @@
     justify-content: start;
     flex-wrap: wrap;
     font-size: 12px;
-    font-size: 12px;
 }
+
+/* jiaojiao
+123456Aa */
 
 .projectMonitoring-content-all .ant-ribbon-wrapper {
     height: 180px;

@@ -1,5 +1,5 @@
 /* 导航栏样式 */
-/* .head-header {
+.head-header {
     display: flex;
     justify-content: space-between;
     padding: 0;
@@ -12,8 +12,12 @@
     color: #333333;
 }
 
+.head-logo:hover {
+    cursor: pointer;
+}
+
 .head-logo>img {
     width: 65px;
     height: 50px;
-} */
+}
 

@@ -15,8 +15,6 @@ export default function Dlzc() {
                 <div className='dlzc-nameMain'></div>
             </div>
             <Outlet />
-
-
         </div>
     )
 }
