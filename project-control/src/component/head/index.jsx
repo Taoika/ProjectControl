@@ -24,6 +24,10 @@ export default function Head() {
         {
             key: 4,
             label: <Link to=''>日志</Link>,
+        },
+        {
+            key: 5,
+            label: <Link to='/monitor'>监控</Link>,
         }
     ];
 

@@ -1,15 +1,13 @@
 import React from 'react'
-import { useRoutes,Outlet } from 'react-router-dom'
+import { Outlet } from 'react-router-dom'
 import './index.css'
-import routes from '../../routes'
 import ManageSider from '../../component/managesider/index'
 
 export default function ManageProject() {
-  const element = useRoutes(routes);
   return (
     <div className='manageProject-container'>
-        <ManageSider/>     
-        <Outlet/>
+      <ManageSider projectmonitoring='项目监控' publish='发布审核' />
+      <Outlet />
     </div>
   )
 }

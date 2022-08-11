@@ -1,6 +1,6 @@
 .manageProject-container {
     display: flex;
-    justify-content: space-between;
-    height: 100vh;
+    /* justify-content: space-between; */
+    height: calc(100vh - 64px);
     background-color: #e0eff9;
 }

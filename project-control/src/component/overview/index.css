@@ -1,0 +1,176 @@
+.overview {
+    justify-content: center;
+    width: calc(100vw - 200px);
+    display: flex;
+    flex-wrap: wrap;
+    border: 1px solid rgba(0, 0, 0, .1);
+    overflow: scroll;
+    height: calc(100vh - 64px);
+}
+
+.overview-title {
+    display: flex;
+    width: calc(96vw - 200px);
+    justify-content: flex-start;
+    margin-top: 20px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.1111vw;
+    line-height: 1.3194vw;
+    text-align: center;
+
+    /* 强提示 */
+
+    color: #333333;
+
+}
+
+.overview-top,
+.overview-bottom {
+    display: flex;
+    justify-content: space-between;
+    width: calc(96vw - 200px);
+    margin-top: 1.5vh;
+
+}
+
+.overview-top {
+    height: 50vh;
+}
+
+.overview-bottom {
+    height: 98vh;
+}
+
+.overview-top-left,
+.overview-top-right {
+    width: 20.5vw;
+    flex-wrap: wrap;
+    display: flex;
+    align-content: space-between;
+    height: 100%;
+}
+
+.overview-top-left>div,
+.overview-top-right>div {
+    display: flex;
+    width: 100%;
+    height: 24vh;
+    flex-wrap: wrap;
+    background: #FFFFFF;
+    justify-content: center;
+    /* 边 */
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.overview-top-mid {
+    display: flex;
+    width: calc(55vw - 200px - 25px);
+    height: 50vh;
+    background: #FFFFFF;
+    /* 边 */
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.overview-bottom {
+    flex-wrap: wrap;
+    align-content: space-between;
+}
+
+.overview-bottom>div {
+    width: 41vw;
+    height: 48vh;
+    background: #FFFFFF;
+    /* 边 */
+    box-shadow: 0px 0px 2px rgba(0, 0, 0, 0.25);
+}
+
+.overview-bottom>div:nth-child(2n) {
+    width: calc(55vw - 210px)
+}
+
+.overview-top-left1-top {
+    display: flex;
+    width: 70%;
+    height: 50%;
+    margin-top: 2.0833vw;
+    justify-content: space-between;
+    /* background-color: pink; */
+}
+
+.overview-top-left1-top>div {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-around;
+}
+
+.overview-top-left1-top span {
+    display: flex;
+}
+
+.overview-top-left1-top span:nth-child(2) {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-size: .84vw;
+    line-height: 1.1806vw;
+    /* identical to box height */
+
+    text-align: center;
+
+    /* 中灰色 */
+
+    color: #999999;
+}
+
+.overview-top-left1-top span:nth-child(3) {
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: .8333vw;
+    line-height: 1.0417vw;
+    /* identical to box height */
+    margin-top: 1.3889vw;
+    text-align: center;
+
+    /* 中灰色 */
+
+    color: #999999;
+
+}
+
+.overview-top-left1-top-value {
+    width: 6.25vw;
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 1.6667vw;
+    line-height: 2.0139vw;
+    /* identical to box height */
+
+    text-align: center;
+
+    /* 强提示 */
+
+    color: #333333;
+}
+
+.red {
+    color: red;
+}
+
+.overview-top-left1 div:last-child {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 10px;
+    line-height: 12px;
+    text-align: center;
+
+    /* 中灰色 */
+
+    color: #999999;
+}

@@ -2,7 +2,7 @@
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
-    top: 10vh;
+    top: calc(2vh + 64px);
     width: 90%;
 }
 

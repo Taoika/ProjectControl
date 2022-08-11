@@ -4,7 +4,7 @@
     flex-wrap: wrap;
     align-items: start;
     padding: 55px 0;
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, .1);
     overflow: scroll;
 }
 
@@ -29,9 +29,9 @@
 .projectMonitoring-content-all .ant-ribbon-wrapper {
     height: 180px;
     width: 342px;
-    border: 1px solid rgba(0,0,0,.1);
-    padding:  10px 17px;
-    margin: 20px 0 0 60px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    padding: 10px 17px;
+    margin: 20px 30px 0 30px;
     border-radius: 5px;
     background-color: #fff;
 }
@@ -69,13 +69,13 @@
 .projectMonitoring-button {
     display: flex;
     justify-content: end;
-    margin: 10px 0 0 0 ;
+    margin: 10px 0 0 0;
 }
 
 .projectMonitoring-button>button {
     width: 84px;
     height: 32px;
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, .1);
     border-radius: 4px;
     margin: 0 0 0 10px;
     outline: none;
@@ -87,7 +87,5 @@
 }
 
 .projectMonitoring-freeze {
-    background-color:  #D6D6D6;
+    background-color: #D6D6D6;
 }
-
-
