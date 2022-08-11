@@ -2,5 +2,5 @@
     display: flex;
     /* justify-content: space-between; */
     height: calc(100vh - 64px);
-    background-color: #e0eff9;
+    justify-content: space-between;
 }

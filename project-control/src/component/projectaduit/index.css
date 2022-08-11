@@ -1,0 +1,39 @@
+.projectAduit {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    background-color: azure;
+}
+
+.projectAduit-content {
+    width: calc(100% - 150px);
+    height: calc(100% - 64px);
+    background-color: #fff;
+}
+
+.projectAduit-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.projectAduit-agree,
+.projectAduit-refuse {
+    height: 36px;
+    width: 103px;
+    margin: 5px 0;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 5px;
+}
+
+.projectAduit-agree {
+    color: #fff;
+    background-color: rgba(71, 167, 255, 0.88);
+}
+
+.projectAduit-refuse {
+    color: rgba(102, 102, 102, 1);
+    background-color: #DADADA;
+}

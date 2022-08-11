@@ -8,6 +8,9 @@ import { Navigate} from 'react-router-dom'
  import ProjectMonitoring from '../component/projectmonitoring'
  import Monitor from '../pages/monitor'
  import Overview from '../component/overview'
+import ProjectAduit from '../component/projectaduit'
+import UserProject from '../pages/userproject'
+ 
 const routes = [
     //登录注册
     {
@@ -40,11 +43,19 @@ const routes = [
     //项目管理
     {
         path:'/manageproject',
+    // 管理员项目相关
+    },
+    {
+        path:'manageproject/*',
         element:<ManageProject/>,
         children:[
             {
                 path: 'projectmonitoring',
                 element: <ProjectMonitoring/>
+            },
+            {
+                path: 'projectaduit',
+                element: <ProjectAduit/>
             },
             {
                 path: '',
@@ -84,5 +95,10 @@ const routes = [
         ]
     },
     
+    // 用户全部项目
+    {
+        path: '/userproject',
+        element: <UserProject />,
+    }
  ]
  export default routes 

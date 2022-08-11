@@ -4,15 +4,27 @@ import './index.css'
 import Search from '../../component/search'
 
 export default function ProjectMonitoring() {
+
+    // 解决布局问题 我甚至读不懂这一段代码
     useEffect(() => {
+        // 只要大小改变了就会触发此事件
         window.addEventListener('resize', () => {
             const parent = document.querySelector('.projectMonitoring-content-all')
             for (let i = 0; i < parent.children.length; i++) {
-                parent.children[i].style.marginLeft = ((window.innerWidth - 200) / Math.floor((window.innerWidth - 200) / 402) - 350) / 2 + 'px'
-                parent.children[i].style.marginRight = ((window.innerWidth - 200) / Math.floor((window.innerWidth - 200) / 402) - 350) / 2 + 'px'
+                let len = window.innerWidth - 200;
+                parent.children[i].style.marginLeft = (len / Math.floor(len / 402) - 350) / 2 + 'px'
+                parent.children[i].style.marginRight = (len / Math.floor(len / 402) - 350) / 2 + 'px'
+                // parent.children[i].style.marginLeft = (len / Math.floor(len / 360) - 350) / 2 + 'px'
+                // parent.children[i].style.marginRight = (len / Math.floor(len / 360) - 350) / 2 + 'px'
+                console.log('len', len);
+                console.log('len / 402', len / 402);
+                console.log('(len / 402) - 350', (len / 402) - 350);
+                console.log('(Math.floor(len / 402) - 350)', (Math.floor(len / 402) - 350));
+                console.log('((len / Math.floor(len / 402) - 350))', ((len / Math.floor(len / 402) - 350)));
             }
         })
     }, [])
+
     return (
         <div className="projectMonitoring-right">
             <div className="projectMonitoring-search"><Search /></div>
@@ -255,7 +267,8 @@ export default function ProjectMonitoring() {
                         <button className="projectMonitoring-freeze">冻结项目</button>
                     </div>
                 </Badge.Ribbon>
-            </div>
-        </div>
+            </div></div>
+
     )
 }
+
