@@ -3,6 +3,8 @@ import { Navigate} from 'react-router-dom'
  import Namel from '../component/namel'
  import Register from '../component/register'
  import Adminl from '../component/adminl'
+ import ManageProject from '../pages/manageproject'
+ import ProjectMonitoring from '../component/projectmonitoring'
  
 const routes = [
     //登录注册
@@ -25,6 +27,20 @@ const routes = [
             {
                 path: '',
                 element: <Navigate to='namel' />
+            }
+        ]
+    },
+    {
+        path:'manageproject',
+        element:<ManageProject/>,
+        children:[
+            {
+                path: 'projectmonitoring',
+                element: <ProjectMonitoring/>
+            },
+            {
+                path: '',
+                element: <Navigate to='projectmonitoring' />
             }
         ]
     },

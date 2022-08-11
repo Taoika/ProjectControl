@@ -8,7 +8,9 @@ import React from 'react';
 import './index.css'
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+
 const { Option } = Select;
+
 export default function Register() {
   const navigate = useNavigate();
   const back = () => {

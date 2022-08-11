@@ -1,0 +1,6 @@
+.manageProject-container {
+    display: flex;
+    justify-content: space-between;
+    height: 100vh;
+    background-color: #e0eff9;
+}

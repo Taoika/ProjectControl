@@ -1,0 +1,93 @@
+.projectMonitoring-right {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: start;
+    padding: 55px 0;
+    border: 1px solid rgba(0,0,0,.1);
+    overflow: scroll;
+}
+
+.projectMonitoring-search {
+    display: flex;
+    justify-content: end;
+    position: fixed;
+    top: 90px;
+    right: 35px;
+    width: 100%;
+    padding: 0 30px;
+}
+
+.projectMonitoring-content-all {
+    display: flex;
+    justify-content: start;
+    flex-wrap: wrap;
+    font-size: 12px;
+    font-size: 12px;
+}
+
+.projectMonitoring-content-all .ant-ribbon-wrapper {
+    height: 180px;
+    width: 342px;
+    border: 1px solid rgba(0,0,0,.1);
+    padding:  10px 17px;
+    margin: 20px 0 0 60px;
+    border-radius: 5px;
+    background-color: #fff;
+}
+
+.projectMonitoring-title {
+    padding: 0 50px 7px 0;
+    font-size: 20px;
+    font-weight: 700;
+    color: #333333;
+}
+
+.projectMonitoring-title,
+.projectMonitoring-synopsis {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.projectMonitoring-synopsis,
+.projectMonitoring-PVAndUVAndTime,
+.projectMonitoring-JSAndAPI {
+    margin: 0 0 7px 0;
+}
+
+.projectMonitoring-PVAndUVAndTime {
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+.projectMonitoring-API {
+    margin: 0 0 0 70px;
+}
+
+.projectMonitoring-button {
+    display: flex;
+    justify-content: end;
+    margin: 10px 0 0 0 ;
+}
+
+.projectMonitoring-button>button {
+    width: 84px;
+    height: 32px;
+    border: 1px solid rgba(0,0,0,.1);
+    border-radius: 4px;
+    margin: 0 0 0 10px;
+    outline: none;
+}
+
+.projectMonitoring-enter {
+    background-color: rgba(71, 167, 255, 0.88);
+    color: #fff;
+}
+
+.projectMonitoring-freeze {
+    background-color:  #D6D6D6;
+}
+
+

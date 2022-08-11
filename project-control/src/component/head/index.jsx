@@ -8,14 +8,14 @@ export default function Head() {
 
     const { Header } = Layout;
 
-    const items1 = [
+    const items = [
         {
             key:1,
             label:  <Link to='/dlzc'><Badge count='!'></Badge></Link>
         },
         {
             key:2,
-            label:<Link to=''>项目</Link>,
+            label:<Link to='/manageproject'>项目</Link>,
         },
         {
             key:3,
@@ -28,14 +28,14 @@ export default function Head() {
     ];
 
     return (
-        <Layout >
+        <div>
             <Header className="head-header" >
                 <div className="head-logo">
                     <img src={logo} alt="项目管控平台" />
                     项目管控平台
                 </div>
-                <Menu mode="horizontal" defaultSelectedKeys={['2']} items={items1}/>
+                <Menu mode="horizontal" defaultSelectedKeys={['2']} items={items}/>
             </Header>
-        </Layout>
+        </div>
     )
 }
