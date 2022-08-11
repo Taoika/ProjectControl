@@ -115,19 +115,21 @@ React.alert=(data,type, callback)=> { //回调函数
         'max-width': '90%',
         'font-size': '1.0526vw',
         'text-align': 'center',
-        'background-color': type?'rgb(246, 255, 237)':'rgb(255, 242, 240)',
+        'background-color': type?'rgb(246, 255, 237)':'rgb(229, 197, 192)',
         // 'border-radius': '15px',
         'position': 'absolute',
-        'top': '20%',
+        'top': '15%',
         'left': '50%',
         'transform': 'translate(-50%, -50%)',
         'padding-left': '1.5vw',
+        'z-index':'999',
         'opacity':0
       
     });
 
     css(alert_text, {
         'padding': '.6579vw .9868vw',
+        'z-index':'999',
         // 'border-bottom': '1px solid #ddd'
     });
 

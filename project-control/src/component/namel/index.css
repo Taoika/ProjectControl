@@ -1,10 +1,39 @@
  .login-form {
      /* width: 100%; */
      position: absolute;
-     left: 69%;
-     bottom: 25%;
-     width: 300px;
-     max-width: 300px;
+     left: 67.5vw;
+     bottom: 25vh;
+     width: 20.8333vw;
+     font-size: .9722vw;
+ }
+
+ .ant-form-item {
+     font-size: 0.875vw
+ }
+
+ .ant-checkbox+span {
+     padding-right: .4861vw;
+     padding-left: .5556vw;
+ }
+
+ .ant-form label {
+     font-size: .9722vw;
+     min-width: none;
+
+ }
+
+ .ant-input {
+     font-size: 0.875vw;
+ }
+
+ .ant-input-affix-wrapper {
+     padding: .2778vw .7639vw;
+     font-size: 0.875vw !important;
+     height: 4vh;
+     width: 21vw;
+     min-width: none;
+     line-height: 1vh;
+
  }
 
  .login-form-forgot {
@@ -15,14 +44,30 @@
      float: left;
  }
 
- .login-form-button {
-     width: 100%;
+ .ant-form-item-control-input {
+     min-height: 0px;
  }
 
- .namel-alert {
+ .ant-form-item {
+     box-sizing: border-box;
+     padding: 0;
+     color: rgba(0, 0, 0, .85);
+     font-size: 0.875vw;
+     font-variant: tabular-nums;
+     line-height: 1.1vw;
+     margin: 0 0 1.6667vw;
+     vertical-align: top;
+ }
+
+ .login-form-button {
      position: absolute;
-     left: 576px;
-     top: 100px;
-     height: 54px;
-     width: 434px;
+     bottom: -2.5vh;
+     left: 0vw;
+     line-height: 2vh;
+     width: 21vw;
+     height: 4vh;
+     font-size: 0.95vw;
+     margin-top: -0.6944vw;
+
+     /* width: 100%; */
  }

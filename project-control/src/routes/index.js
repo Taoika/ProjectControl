@@ -3,7 +3,7 @@ import { Navigate} from 'react-router-dom'
  import Namel from '../component/namel'
  import Register from '../component/register'
  import Adminl from '../component/adminl'
- 
+ import ManageUser from '../pages/manageUser'
 const routes = [
     //登录注册
     {
@@ -28,5 +28,11 @@ const routes = [
             }
         ]
     },
+    //用户管理
+    {
+        path: '/manageUser',
+        element: <ManageUser />,
+    },
+    
  ]
  export default routes 

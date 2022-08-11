@@ -7,10 +7,14 @@ import {
 import React from 'react';
 import './index.css'
 import { useNavigate } from 'react-router-dom';
-import axios from 'axios';
+import Loading from '../loading'
 const { Option } = Select;
 export default function Register() {
   const navigate = useNavigate();
+  //是否显示加载中
+  const [load, setLoad] = React.useState()
+  //flag是阀门，不允许狂点按钮
+  const [flag, setFlag] = React.useState(1)
   const back = () => {
     navigate(-1);
   }
@@ -28,31 +32,23 @@ export default function Register() {
   );
   const onFinish = (values) => {
     const { username, password, email, phone_number } = values;
-    axios({
-      headers: {
-        'Content-Type': 'application/json'
-      },
-      method: 'POST',
-      url: 'http://106.13.18.48/users/register',
-      data: JSON.stringify({ username, password, email, phone_number })
-    }).then(
-      response => {
-        const { data } = response;
-        if (data.code === 60101) {
-          console.log(response);
-          alert('注册成功！');
-          back();
-        }
-        else {
-          alert(data.msg);
-        }
-
-      },
-    )
-    console.log('Received values of form: ', values);
+    if (flag) {
+      setLoad({ left: '47.2895vw', top: '5.75vw' })
+      setFlag(0)
+      React.axios('post', 'http://106.13.18.48/users/register', 60001, setLoad, setFlag,
+        { username, password, email, phone_number }).then(
+          res => {
+            console.log(res, 'app');
+            // navigate('/home')
+          },
+        )
+    }
   };
   return (
+
     <div className='register-mask'>
+      {load ? <Loading {...load} /> : ''}
+
       <div className='register-register'>
         <div className='register-registerName'>用户注册
           <button className='register-cancelBtn' onClick={back} style={{ background: '#3D6DB5', border: 'none' }}>X</button>

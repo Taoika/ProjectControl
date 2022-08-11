@@ -1,9 +1,9 @@
 .dlzc-leftImg {
     position: absolute;
-    width: 61.75vw;
-    height: 100.4722vh;
-    left: .4167vw;
-    top: 3.4306vh;
+    width: 59.75vw;
+    height: 93.4722vh;
+    left: 0.4167vw;
+    top: 6.4306vh;
 }
 
 
@@ -11,10 +11,10 @@
 
 .dlzc-box {
     position: absolute;
-    width: 430px;
-    height: 450px;
-    bottom: 18%;
-    left: 65%;
+    width: 25.8611vw;
+    height: 53vh;
+    bottom: 20vh;
+    left: 65vw;
 
 
     background: #FFFFFF;
@@ -24,16 +24,16 @@
 
 .dlzc-nameLogin {
     position: absolute;
-    width: 120px;
-    height: 24px;
-    left: 20%;
-    top: 11%;
+    width: 8.3333vw;
+    /* height: 10vh; */
+    left: 5vw;
+    top: 6vh;
 
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 1.5em;
-    line-height: 24px;
+    font-size: 1.3889vw;
+    line-height: 1.6667vw;
     letter-spacing: 0.035em;
 
     transition: all 0.3s;
@@ -55,16 +55,16 @@
 
 .dlzc-mailLoign {
     position: absolute;
-    width: 120px;
-    height: 24px;
-    right: 15%;
-    top: 11%;
+    width: 8.3333vw;
+    /* height: 10vh; */
+    left: 15vw;
+    top: 6vh;
 
     font-family: 'Inter';
     font-style: normal;
     font-weight: 400;
-    font-size: 20px;
-    line-height: 24px;
+    font-size: 1.3889vw;
+    line-height: 1.6667vw;
     letter-spacing: 0.035em;
 
     transition: all 0.3s;
@@ -73,10 +73,10 @@
 
 .dlzc-line {
     position: absolute;
-    width: 330px;
+    width: 22.9167vw;
     height: 0px;
-    left: 10%;
-    top: 20%;
+    left: 1.5vw;
+    top: 11vh;
 
     /* 分割线 */
 
@@ -85,8 +85,10 @@
 
 .dlzc-registerBtn {
     position: absolute;
-    bottom: 25%;
-    left: 71%;
+    bottom: 10vh;
+    z-index: 1;
+    left: 2.5vw;
+    font-size: 0.875vw;
     background-color: rgba(0, 0, 0, 0);
     color: rgb(4, 62, 234);
     border: 0;

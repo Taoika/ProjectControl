@@ -1,9 +1,10 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input } from 'antd';
+import { Button, Checkbox, Form, Input, Alert } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../loading'
 import React from 'react';
 import './index.css'
+import axios from 'axios'
 
 const Namel = () => {
     const navigate = useNavigate();
@@ -19,31 +20,28 @@ const Namel = () => {
                 { username: values.username, password: values.password }).then(
                     res => {
                         console.log(res, 'app');
-                        navigate(-1)
+                        // navigate('/home')
                     },
                 )
         }
     };
     return (
-
         <div>
             {load ? <Loading {...load} /> : ''}
             <Form
                 style={{ height: '31vh', }}
                 name="normal_login"
                 className="login-form"
-                initialValues={{
-                    remember: true,
-                }}
                 onFinish={onFinish}
             >
                 {/* 用户名 */}
                 <Form.Item
-                    name="username"
+
+                    name="command"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your Username!',
+                            message: 'Please input your command!',
                         },
                         {
                             pattern: "^[\\u4e00-\\u9fa5a-zA-Z0-9]{6,12}$",
@@ -51,36 +49,8 @@ const Namel = () => {
                         }
                     ]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
-                </Form.Item>
-                {/* 密码 */}
-                <Form.Item
-                    name="password"
-                    rules={[
-                        {
-                            required: true,
-                            message: 'Please input your Password!',
-                        },
-                        {
-                            pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$",
-                            message: '密码必须包含6-20个大小写字母、数字'
-
-                        }
-                    ]}
-                >
-                    <Input
-                        prefix={<LockOutlined className="site-form-item-icon" />}
-                        type="password"
-                        placeholder="Password"
-                    />
-                </Form.Item>
-                <Form.Item>
-                    <Form.Item name="remember" valuePropName="checked" noStyle>
-                        <Checkbox>Remember me</Checkbox>
-                    </Form.Item>
-                </Form.Item>
-                <Form.Item>
-                    <Button type="primary" htmlType="submit" className="login-form-button">
+                    <Input className='admin-command' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="command" />
+                    <Button type="primary" htmlType="submit" className="admin-form-button">
                         Log in
                     </Button>
 
