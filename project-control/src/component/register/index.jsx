@@ -9,6 +9,7 @@ import './index.css'
 import { useNavigate } from 'react-router-dom';
 import Loading from '../loading'
 const { Option } = Select;
+
 export default function Register() {
   const navigate = useNavigate();
   //是否显示加载中

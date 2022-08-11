@@ -1,4 +1,7 @@
 import React from 'react'
+import './index.css'
+import searchIcon from '../../assets/images/search.png'
+
 export default function Index(props) {
     const { setMsg } = props;
     const myRef = React.useRef();
@@ -15,9 +18,9 @@ export default function Index(props) {
         }
     }
     return (
-        <div>
-            <input type="text" ref={myRef} onKeyDown={(e) => handleKeyDown(e)} />
-            <button onClick={search}>搜索</button>
+        <div className='search'>
+            <input className='search-input' type="text" ref={myRef} onKeyDown={(e) => handleKeyDown(e)} placeholder='搜索'/>
+            <button className='search-btn' onClick={search}><img src={searchIcon} alt="搜索" /></button>
         </div>
     )
 }

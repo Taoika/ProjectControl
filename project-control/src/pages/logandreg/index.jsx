@@ -2,6 +2,7 @@ import React from 'react'
 import img from '../../assets/images/chahua.png'
 import './index.css'
 import { NavLink, Outlet, Link } from 'react-router-dom'
+
 export default function Dlzc() {
     return (
         <div>

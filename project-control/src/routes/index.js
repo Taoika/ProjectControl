@@ -4,6 +4,9 @@ import { Navigate} from 'react-router-dom'
  import Register from '../component/register'
  import Adminl from '../component/adminl'
  import ManageUser from '../pages/manageUser'
+ import ManageProject from '../pages/manageproject'
+ import ProjectMonitoring from '../component/projectmonitoring'
+ 
 const routes = [
     //登录注册
     {
@@ -34,5 +37,19 @@ const routes = [
         element: <ManageUser />,
     },
     
+    {
+        path:'manageproject',
+        element:<ManageProject/>,
+        children:[
+            {
+                path: 'projectmonitoring',
+                element: <ProjectMonitoring/>
+            },
+            {
+                path: '',
+                element: <Navigate to='projectmonitoring' />
+            }
+        ]
+    },
  ]
  export default routes 
