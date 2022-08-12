@@ -10,6 +10,7 @@ import { Navigate} from 'react-router-dom'
  import Overview from '../component/overview'
 import ProjectAduit from '../component/projectaduit'
 import UserProject from '../pages/userproject'
+import ProjectPublish from '../pages/projectpublish'
  
 const routes = [
     //登录注册
@@ -40,11 +41,7 @@ const routes = [
         path: '/manageUser',
         element: <ManageUser />,
     },
-    //项目管理
-    {
-        path:'/manageproject',
     // 管理员项目相关
-    },
     {
         path:'manageproject/*',
         element:<ManageProject/>,
@@ -99,6 +96,11 @@ const routes = [
     {
         path: '/userproject',
         element: <UserProject />,
+    },
+    // 用户发布项目
+    {
+        path: '/projectpublish',
+        element: <ProjectPublish />,
     }
  ]
  export default routes 

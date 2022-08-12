@@ -1,0 +1,56 @@
+.projectPublish-container {
+    display: flex;
+    justify-content: center;
+}
+
+.projectPublish {
+    width: 926px;
+    padding: 20px 0 0 0;
+}
+
+.projectPublish-head {
+    padding: 10px 0;
+    font-size: 24px;
+}
+
+.projectPublish-content {
+    position: relative;
+}
+
+#projectPublish {
+    padding: 40px 60px;
+    border: 1px solid rgba(0,0,0,.1);
+    background-color: #fff;
+}
+
+#projectPublish button {
+    margin: 0 auto;
+}
+
+.projectPublish-pack {
+    position: absolute;
+    bottom: 11vh;
+    left: 12vw;
+}
+
+#projectPublish .ant-input-textarea-show-count.ant-input-textarea-in-form-item:after {
+    margin:5px 0 -22px 0;
+}
+
+@media screen and (max-width:670px) {
+    #projectPublish {
+        width: 100vw;
+    }
+}
+
+@media screen and (min-width:1890px) {
+    .projectPublish {
+        width: 60vw;
+    }
+
+    .projectPublish-pack {
+        position: absolute;
+        bottom: 100px;
+        left: 12vw;
+    }
+}

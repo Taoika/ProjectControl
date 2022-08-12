@@ -16,7 +16,11 @@ export default function Nav(props) {
 
     // 根据props动态生成items props为对象 键值对分别对应key和展示条目
     const items=[];
+    // 获取默认值
+    let defaultSelectedKeys='';
+    let k=1;
     for(const i in props){
+        defaultSelectedKeys=(k++)===2?i:defaultSelectedKeys;
         items.push({
             key:i,
             label:<Link to={`/${i}`}>{props[i]}</Link>
@@ -24,13 +28,13 @@ export default function Nav(props) {
     }
 
     return (
-        <div>
+        <div className='head'>
             <Header className="head-header" >
                 <div className="head-logo" onClick={handleClick}>
                     <img src={logo} alt="项目管控平台" />
                     项目管控平台
                 </div>
-                <Menu mode="horizontal" defaultSelectedKeys={['2']} items={items} />
+                <Menu mode="horizontal" defaultSelectedKeys={[defaultSelectedKeys]} items={items} />
             </Header >
             <Outlet/>
         </div >

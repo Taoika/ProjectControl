@@ -1,4 +1,10 @@
 /* 导航栏样式 */
+
+/* .head {
+    position: fixed;
+    top: 0;
+    width: 100%;
+} */
 .head-header {
     display: flex;
     justify-content: space-between;

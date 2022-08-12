@@ -1,9 +1,9 @@
 .projectMonitoring-right {
     width: 100%;
-    display: flex;
+    /* display: flex;
     flex-wrap: wrap;
-    align-items: start;
-    padding: 70px 0;
+    align-items: start; */
+    padding: 30px 0;
     border: 1px solid rgba(0, 0, 0, .1);
     overflow: scroll;
 }
@@ -11,22 +11,21 @@
 .projectMonitoring-search {
     display: flex;
     justify-content: end;
+    /* 做成浮动的效果 但是需要其他的栏目一起配合 
     position: fixed;
     top: 90px;
-    right: 60px;
+    right: 60px; */
     width: 100%;
-    padding: 0 30px;
+    padding: 0 50px;
 }
 
 .projectMonitoring-content-all {
     display: flex;
-    justify-content: start;
+    justify-content: space-around;
     flex-wrap: wrap;
     font-size: 12px;
 }
 
-/* jiaojiao
-123456Aa */
 
 .projectMonitoring-content-all .ant-ribbon-wrapper {
     height: 180px;
@@ -36,6 +35,11 @@
     margin: 20px 30px 0 30px;
     border-radius: 5px;
     background-color: #fff;
+}
+
+.projectMonitoring-content-all>i {
+    width: 342px;
+    margin: 0 30px 0 30px;
 }
 
 .projectMonitoring-title {
