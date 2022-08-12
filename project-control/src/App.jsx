@@ -9,6 +9,7 @@ export default function App() {
     return (
         <>
             <Head />
+            <div style={{ height: '64px', width: '100vw' }}></div>
             {element}
         </>
     )
