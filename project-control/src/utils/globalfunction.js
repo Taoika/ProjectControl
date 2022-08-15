@@ -19,7 +19,7 @@ React.getCookie=(cookieName) =>{
     return ''
   }
 //axios
-  React.axios =(type,url,code,setLoad,setFlag,data,params,blob) => {
+  React.axios =(type,url,setLoad,setFlag,data,params,blob) => {
     return new Promise((resolve,reject)=>{
       // //公钥
       const PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDI3hf95L3aMonXCgG926Gt6nwft8RnhM+6UHVieE4N58V0swNvFVU4XRrlNn4o2vU8eZ5z1c8s2AHEl65ck5kiAPjC82nCgWd4j1sdr2Wvz18B+/DT4PLZum4QzwIAviQfafp1qVbC6fYj0BLyDXmeaO5gi3X19U0kIhUPWbzAqQIDAQAB';
@@ -47,7 +47,7 @@ React.getCookie=(cookieName) =>{
           if(typeof setLoad ==='function'){
             setLoad(0);
           }      
-          if(code===response.data.code||!response.data.code){
+          if(200===response.data.code||!response.data.code){
             //回复
             if(response.data.code){
               React.alert(response.data.msg, 1, () => {
