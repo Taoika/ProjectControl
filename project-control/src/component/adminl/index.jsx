@@ -1,10 +1,9 @@
-import { LockOutlined, UserOutlined } from '@ant-design/icons';
-import { Button, Checkbox, Form, Input, Alert } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
+import { Button, Form, Input, } from 'antd';
 import { useNavigate } from 'react-router-dom';
 import Loading from '../loading'
 import React from 'react';
 import './index.css'
-import axios from 'axios'
 
 const Namel = () => {
     const navigate = useNavigate();
@@ -16,10 +15,10 @@ const Namel = () => {
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://106.13.18.48/users', 60001, setLoad, setFlag,
-                { username: values.username, password: values.password }).then(
+            React.axios('post', 'http://39.98.41.126:31100/user/login', setLoad, setFlag,
+                { username: 'Admin', password: values.command }).then(
                     res => {
-                        console.log(res, 'app');
+                        console.log(res, '管理员');
                         // navigate('/home')
                     },
                 )
@@ -36,20 +35,18 @@ const Namel = () => {
             >
                 {/* 用户名 */}
                 <Form.Item
-
                     name="command"
                     rules={[
                         {
                             required: true,
-                            message: 'Please input your command!',
+                            message: '请输入管理员口令',
                         },
-                        {
-                            pattern: "^[\\u4e00-\\u9fa5a-zA-Z0-9]{6,12}$",
-                            message: '用户名必须为6-12位字母/数字/中文'
-                        }
                     ]}
                 >
-                    <Input className='admin-command' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="command" />
+                    <Input className='admin-command' prefix={<UserOutlined className="site-form-item-icon" />} placeholder="口令" />
+
+                </Form.Item>
+                <Form.Item>
                     <Button type="primary" htmlType="submit" className="admin-form-button">
                         Log in
                     </Button>

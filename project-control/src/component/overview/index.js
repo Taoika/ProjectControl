@@ -7,7 +7,7 @@ import OverviewBottom1 from '../overviewBottom1'
 import OverviewBottom2 from '../overviewBottom2'
 import OverviewBottom3 from '../overviewBottom3'
 import OverviewBottom4 from '../overviewBottom4'
-
+import OverviewBottom5 from '../overviewBottom5'
 export default function Overview() {
   return (
     <div className='overview'>
@@ -18,10 +18,11 @@ export default function Overview() {
           <OverviewTopRight/>    
         </div>
         <div className='overview-bottom'>
-          <OverviewBottom1/>
+          <OverviewBottom1 />
           <OverviewBottom2/>
           <OverviewBottom3/>
           <OverviewBottom4/>
+          <OverviewBottom5/>
         </div>
     </div>
   )
