@@ -3,12 +3,15 @@ import Area from '../area'
 import green from '../../assets/images/green.png'
 import blue from '../../assets/images/blue.png'
 import Dropdown from '../dropdown'
+import { ClockCircleOutlined } from '@ant-design/icons';
 
-export default function index() {
+export default function Index() {
+  const [time,setTime]=React.useState(1)
   return (
     <div className='overview-top-mid'>
     <div style={{display: 'flex',width:'100%',justifyContent:'end'}}>
-        <Dropdown/>
+    <ClockCircleOutlined style={{ position: 'relative', top: '9px', right: '-90px', zIndex: '999' }} />
+        <Dropdown option={['今日','今月','今年']} func={setTime} />
       </div>
       <div style={{display: 'flex',width:'100%',height:'10vh'}}>
         <div style={{display: 'flex',height:'100%',flexWrap:'wrap',marginLeft:'10px',alignContent:'start'}}>
@@ -25,7 +28,7 @@ export default function index() {
       </div>
       <div></div>
 
-      <Area/>
+      <Area time={time}/>
     </div>
   )
 }

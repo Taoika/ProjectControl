@@ -29,13 +29,14 @@ export default function ProjectPublish() {
       },
     },
   };
-  
+
   // 引入表单
   const [form] = Form.useForm();
 
   // 提交回调
   const onFinish = (values) => {
     console.log('从表单获取到的值:', values);
+    // React.axios()
   };
 
   return (
@@ -43,7 +44,7 @@ export default function ProjectPublish() {
       <div className='projectPublish'>
         <div className="projectPublish-head">发布项目</div>
         <div className="projectPublish-content">
-        <div className="projectPublish-pack"><a href="#">安装依赖包</a></div>
+          <div className="projectPublish-pack"><a href="#">安装依赖包</a></div>
           {/* 表单 */}
           <Form
             form={form}
@@ -58,21 +59,21 @@ export default function ProjectPublish() {
               label="项目名称"
               rules={[
                 {
-                    required: true,
-                    message: '请输入您的项目名称!',
+                  required: true,
+                  message: '请输入您的项目名称!',
                 },
                 {
                   type: 'string',
                   max: 40,
                 },
               ]}
-              labelCol= {{
-                xs:{ span: 24 },
-                sm:{ span: 3 },
+              labelCol={{
+                xs: { span: 24 },
+                sm: { span: 3 },
               }}
-              wrapperCol= {{
-                xs:{ span: 24 },
-                sm:{ span: 7 },
+              wrapperCol={{
+                xs: { span: 24 },
+                sm: { span: 7 },
               }}
             >
               <Input />
@@ -85,12 +86,12 @@ export default function ProjectPublish() {
               tooltip="此口令是您可以管理项目的重要依据"
               rules={[
                 {
-                    required: true,
-                    message: '请输入您的项目口令!',
+                  required: true,
+                  message: '请输入您的项目口令!',
                 },
                 {
-                    pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$",
-                    message: '项目口令必须为6-20个字母、数字'
+                  pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$",
+                  message: '项目口令必须为6-20个字母、数字'
                 }
               ]}
             >
@@ -104,15 +105,15 @@ export default function ProjectPublish() {
               rules={[
                 {
                   required: true,
-                  message:'请输入您的项目地址!',
+                  message: '请输入您的项目地址!',
                 },
                 {
                   type: 'url',
-                  message:'项目地址格式错误'
+                  message: '项目地址格式错误'
                 },
               ]}
             >
-              <Input/>
+              <Input />
             </Form.Item>
 
             {/* 项目简介 */}
@@ -120,7 +121,7 @@ export default function ProjectPublish() {
               name="introduce"
               label="项目简介"
             >
-              <Input.TextArea showCount maxLength={200} autoSize={{minRows: 8}}/>
+              <Input.TextArea showCount maxLength={200} autoSize={{ minRows: 8 }} />
             </Form.Item>
 
             {/* 提交按钮 */}
@@ -131,7 +132,7 @@ export default function ProjectPublish() {
             </Form.Item>
           </Form>
         </div>
-    </div>
+      </div>
     </div>
   );
 }

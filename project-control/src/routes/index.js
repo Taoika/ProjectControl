@@ -11,7 +11,9 @@ import { Navigate} from 'react-router-dom'
 import ProjectAduit from '../component/projectaduit'
 import UserProject from '../pages/userproject'
 import ProjectPublish from '../pages/projectpublish'
- 
+ import JsError from '../component/jsError'
+ import ApiError from '../component/apiError'
+import ResourceError from '../component/resourceError'
 const routes = [
     //登录注册
     {
@@ -71,19 +73,15 @@ const routes = [
             },
             {
                 path: 'jsError',
-                // element: <JsError />,
+                element: <JsError />,
             },
             {
                 path: 'apiRequest',
-                // element: <ApiRequest />,
+                element: <ApiError />,
             },
             {
-                path: 'visit',
-                // element: <Visit />,
-            },
-            {
-                path: 'resourError',
-                // element: <ResourError />,
+                path: 'resourceError',
+                element: <ResourceError />,
             },
             {
                 path: '',

@@ -33,7 +33,7 @@ const DemoArea = () => {
         },
     };
 
-    return <Area style={{ display: 'flex', width: '90%', height: '70%', marginBottom: '10px' }} {...config} />;
+    return <Area style={{ display: 'flex', width: '90%', height: '80%', marginBottom: '20px' }} {...config} />;
 };
 
 export default DemoArea

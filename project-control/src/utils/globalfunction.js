@@ -4,6 +4,7 @@ import React from 'react'
 import True from '../assets/images/true.png' 
 import False from '../assets/images/false.png' 
 import { encryptAES,decryptAES,encryptRSA,initKey } from './encrypt';
+// axios.defaults.withCredentials = true
 
 //读Cookie
 React.getCookie=(cookieName) =>{
@@ -24,11 +25,12 @@ React.getCookie=(cookieName) =>{
       // //公钥
       const PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDI3hf95L3aMonXCgG926Gt6nwft8RnhM+6UHVieE4N58V0swNvFVU4XRrlNn4o2vU8eZ5z1c8s2AHEl65ck5kiAPjC82nCgWd4j1sdr2Wvz18B+/DT4PLZum4QzwIAviQfafp1qVbC6fYj0BLyDXmeaO5gi3X19U0kIhUPWbzAqQIDAQAB';
       // AES秘钥
-      const AESKey=initKey(16);
+      let AESKey=initKey(16);
       axios({
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': React.getCookie('header')
+          'Authorization': React.getCookie('header'),
+          // 'Access-Control-Expose-Headers':'Authorization'
         },
         method:type.toUpperCase(),
         url,
@@ -44,24 +46,18 @@ React.getCookie=(cookieName) =>{
       })
       .then(
         response=>{
+          console.log(response,'response');
           if(typeof setLoad ==='function'){
             setLoad(0);
           }      
           if(200===response.data.code||!response.data.code){
             //回复
-            if(response.data.code){
+            if(response.data.code&& typeof setFlag ==='function'){
               React.alert(response.data.msg, 1, () => {
-                if(typeof setFlag ==='function'){
                   setFlag(1)
-                }
               })
             }            
-            //判断是否设置cookie
-            if(response.headers.authorization){
-                document.cookie = `header=${response.headers.authorization}`;
-                document.cookie = `permission=${response.data.data.permission}`;
-                document.cookie = `user=${response.data.data.user_id}`;
-            }
+            
             //判断是否是获取文件
             if(blob){
               let imageType = response.headers['content-type'];   //获取图片类型
@@ -72,7 +68,14 @@ React.getCookie=(cookieName) =>{
             //返回数据
             if(response.data.data){
               AESKey=type.toUpperCase()==='GET'?'Z6XB<$F9fA5jRT92':AESKey;
-              resolve(decryptAES(AESKey,response.data.data))//使用返回的data
+              const data=JSON.parse( decryptAES(AESKey,response.data.data))
+                //判断是否设置cookie
+                if(response.headers.authorization){
+                  document.cookie = `header=${response.headers.authorization}`;
+                  document.cookie = `permission=${data.position}`;
+                  document.cookie = `user=${data.id}`;
+                }
+              resolve(data)//使用返回的data
             }
           }    
           //错误时

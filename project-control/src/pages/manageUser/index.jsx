@@ -51,62 +51,96 @@ export default function ManageUser(props) {
     //flag是阀门，不允许狂点按钮
     const [flag, setFlag] = React.useState(1)
     // 请求数据
-    const getData = (current, pageSize) => {
+    const getData = () => {
         if (flag) {
             setLoad(1)
             setFlag(0)
-            React.axios('post', 'url', 'code', setLoad, setFlag,
-                { current, pageSize }).then(
-                    res => {
-                        console.log(res, 'app');
-                        // setData(res)
-                        // if(res.length!==total){
-                        //     setTotal(res.length)
-                        // }
-                    },
-                )
+            React.axios('get', 'http://39.98.41.126:31100/user/getAllUser', setLoad,
+            ).then(
+                res => {
+                    console.log(res, '用户信息');
+                    setData(res.map(i => {
+                        return ({
+                            key: i.id,
+                            username: i.username,
+                            state: <span><Badge status={i.onLive ? "success" : 'default'} />{i.onLive ? "在线" : '离线'}</span>,
+                            regdate: i.registerDate,
+                            control:
+                                <Space size="middle">
+                                    <a>强制下线</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                                    <Dropdown overlay={
+                                        <Menu
+                                            items={[
+                                                {
+                                                    key: '1',
+                                                    label: '1天',
+                                                },
+                                                {
+                                                    key: '2',
+                                                    label: '1月',
+                                                },
+                                                {
+                                                    key: '3',
+                                                    label: '1年',
+                                                },
+                                            ]}
+                                        />}>
+                                        <a>
+                                            冻结用户 <DownOutlined />
+                                        </a>
+                                    </Dropdown>
+                                </Space>
+
+
+                        })
+                    }))
+                    if (res.length !== total) {
+                        setTotal(res.length)
+                    }
+                },
+            )
         }
     }
     React.useEffect(() => {
-        // getData(1, 10)
+        getData()
     }, []);
 
-    for (let i = 10; i > 0; i--) {
-        data.push({
-            key: i,
-            username: '用户名',
-            state: <span><Badge status="success" />在线</span>,
-            regdate: '2022-8-9',
-            control:
+    // for (let i = 10; i > 0; i--) {
+    //     data.push({
+    //         key: i,
+    //         username: '用户名',
+    //         state: <span><Badge status="success" />在线</span>,
+    //         regdate: '2022-8-9',
+    //         control:
 
-                <Space size="middle">
-                    <a>强制下线</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                    <Dropdown overlay={
-                        <Menu
-                            items={[
-                                {
-                                    key: '1',
-                                    label: '1天',
-                                },
-                                {
-                                    key: '2',
-                                    label: '1月',
-                                },
-                                {
-                                    key: '3',
-                                    label: '1年',
-                                },
-                            ]}
-                        />}>
-                        <a>
-                            冻结用户 <DownOutlined />
-                        </a>
-                    </Dropdown>
-                </Space>
+    //             <Space size="middle">
+    //                 <a>强制下线</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+    //                 <Dropdown overlay={
+    //                     <Menu
+    //                         items={[
+    //                             {
+    //                                 key: '1',
+    //                                 label: '1天',
+    //                             },
+    //                             {
+    //                                 key: '2',
+    //                                 label: '1月',
+    //                             },
+    //                             {
+    //                                 key: '3',
+    //                                 label: '1年',
+    //                             },
+    //                         ]}
+    //                     />}>
+    //                     <a>
+    //                         冻结用户 <DownOutlined />
+    //                     </a>
+    //                 </Dropdown>
+    //             </Space>
 
 
-        })
-    }
+    //     })
+    // }
 
     // 处理分页
     function handleChange(page, pageSize) {
@@ -161,7 +195,7 @@ export default function ManageUser(props) {
                 //     defaultExpandedRowKeys: ['0'],
                 // }}
                 expandedRowRender={(record) => expandedRowRender(record)}
-
+                defaultPageSize={10}
                 columns={columns}
                 loading={load ? true : false}
                 // 数据数组
