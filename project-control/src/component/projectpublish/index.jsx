@@ -1,15 +1,8 @@
 import { Button, Form, Input } from 'antd';
 import React from 'react';
 import './index.css'
-import Tip from '../../component/tip'
-import Loading from '../../component/loading'
-
-
+import Tip from '../tip'
 export default function ProjectPublish() {
-  //flag是阀门，不允许狂点按钮
-  //加载中
-  const [load, setLoad] = React.useState(0)
-  const [flag, setFlag] = React.useState(1)
   const [tip, setTip] = React.useState(0)
   // 输入框位置占比配置
   const formItemLayout = {
@@ -42,14 +35,7 @@ export default function ProjectPublish() {
 
   // 提交回调
   const onFinish = (values) => {
-    console.log('从表单获取到的值:', values, React.getCookie('user'), 'id');
-    const { projectName, projectDesc, projectUrl } = values
-    if (flag) {
-      setLoad({ left: '47.2895vw', top: '5.75vw' })
-      setFlag(0)
-      React.axios('post', 'http://39.98.41.126:31100/project/saveProject', setLoad, setFlag,
-        { userId: React.getCookie('user'), projectName, projectDesc, projectUrl })
-    }
+    console.log('从表单获取到的值:', values);
     // React.axios()
   };
   const showTip = () => {
@@ -58,7 +44,6 @@ export default function ProjectPublish() {
 
   return (
     <div className="projectPublish-container">
-      {load ? <Loading {...load} /> : ''}
       {tip ? <Tip setTip={setTip} /> : ''}
       <div className='projectPublish'>
         <div className="projectPublish-head">发布项目</div>
@@ -99,7 +84,7 @@ export default function ProjectPublish() {
             </Form.Item>
 
             {/* 项目口令 */}
-            {/* <Form.Item
+            <Form.Item
               name="password"
               label="项目口令"
               tooltip="此口令是您可以管理项目的重要依据"
@@ -115,20 +100,16 @@ export default function ProjectPublish() {
               ]}
             >
               <Input />
-            </Form.Item> */}
+            </Form.Item>
 
             {/* 项目地址 */}
             <Form.Item
-              name="projectUrl"
+              name="url"
               label="项目地址"
               rules={[
                 {
                   required: true,
                   message: '请输入您的项目地址!',
-                },
-                {
-                  max: 100,
-                  message: '地址过长'
                 },
                 {
                   type: 'url',
@@ -141,14 +122,8 @@ export default function ProjectPublish() {
 
             {/* 项目简介 */}
             <Form.Item
-              name="projectDesc"
+              name="introduce"
               label="项目简介"
-              rules={[
-                {
-                  required: true,
-                  message: '请输入您的项目地址!',
-                },
-              ]}
             >
               <Input.TextArea showCount maxLength={200} autoSize={{ minRows: 8 }} />
             </Form.Item>

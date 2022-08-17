@@ -1,15 +1,13 @@
-import { Button, Form, Input } from 'antd';
+import { Button, Form, Input, message, Popconfirm } from 'antd';
 import React from 'react';
 import './index.css'
-import Tip from '../../component/tip'
+import Tip from '../tip'
 import Loading from '../../component/loading'
-
-
-export default function ProjectPublish() {
-  //flag是阀门，不允许狂点按钮
-  //加载中
-  const [load, setLoad] = React.useState(0)
+export default function Updateproject() {
+  const text = '确定删除该项目吗?';
   const [flag, setFlag] = React.useState(1)
+  const [load, setLoad] = React.useState(0)
+
   const [tip, setTip] = React.useState(0)
   // 输入框位置占比配置
   const formItemLayout = {
@@ -22,6 +20,9 @@ export default function ProjectPublish() {
       xs: { span: 24 },
       sm: { span: 20 },
     },
+  };
+  const confirm = () => {
+    message.info('Clicked on Yes.');
   };
   // 按钮位置占比配置
   const tailFormItemLayout = {
@@ -42,32 +43,31 @@ export default function ProjectPublish() {
 
   // 提交回调
   const onFinish = (values) => {
-    console.log('从表单获取到的值:', values, React.getCookie('user'), 'id');
-    const { projectName, projectDesc, projectUrl } = values
     if (flag) {
       setLoad({ left: '47.2895vw', top: '5.75vw' })
       setFlag(0)
-      React.axios('post', 'http://39.98.41.126:31100/project/saveProject', setLoad, setFlag,
-        { userId: React.getCookie('user'), projectName, projectDesc, projectUrl })
+      const { projectName, projectUrl, projectDesc } = values
+      React.axios('post', 'http://39.98.41.126:31100/project/update', setLoad, setFlag,
+        { projectId: React.getCookie('manage'), projectName, projectUrl, projectDesc }).then()
     }
-    // React.axios()
   };
-  const showTip = () => {
-    setTip(1)
-  }
+
 
   return (
-    <div className="projectPublish-container">
+    <div className="Updateproject-container">
       {load ? <Loading {...load} /> : ''}
-      {tip ? <Tip setTip={setTip} /> : ''}
-      <div className='projectPublish'>
-        <div className="projectPublish-head">发布项目</div>
-        <div className="projectPublish-content">
-          <div className="projectPublish-pack"><a href="javascript:;" onClick={showTip}>如何加入监控？</a></div>
+      <div className='Updateproject'>
+        <div className="Updateproject-head">更新项目</div>
+        <div className="Updateproject-content">
+          <div className="Updateproject-pack">
+            <Popconfirm placement="top" title={text} onConfirm={confirm} okText="Yes" cancelText="No">
+              <Button>删除项目</Button>
+            </Popconfirm>
+          </div>
           {/* 表单 */}
           <Form
             form={form}
-            name="projectPublish"
+            name="Updateproject"
             {...formItemLayout}
             onFinish={onFinish}
             colon={false}
@@ -75,6 +75,7 @@ export default function ProjectPublish() {
             {/* 项目名称 */}
             <Form.Item
               name="projectName"
+              initialValue={React.getCookie('managename')}
               label="项目名称"
               rules={[
                 {
@@ -97,29 +98,10 @@ export default function ProjectPublish() {
             >
               <Input />
             </Form.Item>
-
-            {/* 项目口令 */}
-            {/* <Form.Item
-              name="password"
-              label="项目口令"
-              tooltip="此口令是您可以管理项目的重要依据"
-              rules={[
-                {
-                  required: true,
-                  message: '请输入您的项目口令!',
-                },
-                {
-                  pattern: "^(?=.*\\d)(?=.*[a-z])(?=.*[A-Z]).{6,20}$",
-                  message: '项目口令必须为6-20个字母、数字'
-                }
-              ]}
-            >
-              <Input />
-            </Form.Item> */}
-
             {/* 项目地址 */}
             <Form.Item
               name="projectUrl"
+              initialValue={React.getCookie('manageurl')}
               label="项目地址"
               rules={[
                 {
@@ -127,12 +109,12 @@ export default function ProjectPublish() {
                   message: '请输入您的项目地址!',
                 },
                 {
-                  max: 100,
-                  message: '地址过长'
-                },
-                {
                   type: 'url',
                   message: '项目地址格式错误'
+                },
+                {
+                  max: '100',
+                  message: '地址长度不超过100'
                 },
               ]}
             >
@@ -142,21 +124,16 @@ export default function ProjectPublish() {
             {/* 项目简介 */}
             <Form.Item
               name="projectDesc"
+              initialValue={React.getCookie('managedesc')}
               label="项目简介"
-              rules={[
-                {
-                  required: true,
-                  message: '请输入您的项目地址!',
-                },
-              ]}
             >
               <Input.TextArea showCount maxLength={200} autoSize={{ minRows: 8 }} />
             </Form.Item>
 
             {/* 提交按钮 */}
             <Form.Item {...tailFormItemLayout}>
-              <Button type="primary" htmlType="submit">
-                确认发布
+              <Button style={{ marginLeft: '80px' }} type="primary" htmlType="submit">
+                确认保存
               </Button>
             </Form.Item>
           </Form>

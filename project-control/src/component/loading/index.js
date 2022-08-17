@@ -5,7 +5,7 @@ const App = (props) => (
   <Spin 
     tip="Loading..."
     style={{
-      position:'absolute',left:props.left,top:props.top
+      position:'absolute',zIndex:'999999999999999999999',left:props.left,top:props.top
       }}>
   </Spin>
 );

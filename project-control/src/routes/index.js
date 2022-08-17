@@ -14,6 +14,14 @@ import ProjectPublish from '../pages/projectpublish'
  import JsError from '../component/jsError'
  import ApiError from '../component/apiError'
 import ResourceError from '../component/resourceError'
+import Projectpermission from '../pages/projectpermission'
+import Mymonitorproject from '../component/mymonitorproject'
+import Mypublishproject from '../component/mypublishproject'
+import Managepublishproject from '../pages/managepublishproject'
+import Confirmpower from '../component/confirmpower'
+import Managepower from '../component/managepower'
+import Updateproject from '../component/updateproject'
+import Publisher from '../component/publisher'
 const routes = [
     //登录注册
     {
@@ -99,6 +107,53 @@ const routes = [
     {
         path: '/projectpublish',
         element: <ProjectPublish />,
+    
+    },
+    //用户察看权限
+    {
+        path: '/projectpermission',
+        element: <Projectpermission />,
+        children:[
+            {
+            path: 'mymonitorproject',
+            element: <Mymonitorproject />,
+            },
+            {
+                path: 'mypublishproject',
+                element: <Mypublishproject />,
+            },
+            {
+                path: '',
+                element: <Navigate to='mymonitorproject' />
+            }
+        ]
+    },
+    //用户管理已发布项目
+    {
+        path: '/managepublishproject',
+        element: <Managepublishproject />,
+        children:[
+            {
+                path: 'confirmpower',
+                element: <Confirmpower />,
+            },
+            {
+                path: 'managepower',
+                element: <Managepower />,
+            },
+            {
+                path: 'updateproject',
+                element: <Updateproject />,
+            },
+            {
+                path: 'publisher',
+                 element: <Publisher />,
+            },
+            {
+                path: '',
+                element: <Navigate to='confirmpower' />
+            }
+        ]
     }
  ]
  export default routes 

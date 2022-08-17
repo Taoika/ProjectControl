@@ -1,12 +1,12 @@
 import { UserOutlined } from '@ant-design/icons';
 import { Button, Form, Input, } from 'antd';
-import { useNavigate } from 'react-router-dom';
 import Loading from '../loading'
 import React from 'react';
 import './index.css'
 
-const Namel = () => {
-    const navigate = useNavigate();
+
+
+export default function Adminl() {
     //是否显示加载中
     const [load, setLoad] = React.useState()
     //flag是阀门，不允许狂点按钮
@@ -29,7 +29,7 @@ const Namel = () => {
             {load ? <Loading {...load} /> : ''}
             <Form
                 style={{ height: '31vh', }}
-                name="normal_login"
+                name="adminl"
                 className="login-form"
                 onFinish={onFinish}
             >
@@ -56,6 +56,5 @@ const Namel = () => {
         </div>
 
     );
-};
+}
 
-export default Namel;

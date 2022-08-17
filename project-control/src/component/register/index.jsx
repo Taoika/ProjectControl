@@ -32,17 +32,12 @@ export default function Register() {
     </Form.Item>
   );
   const onFinish = (values) => {
-    const { username, password, email, phone_number } = values;
+    const { username, password, phone } = values;
     if (flag) {
       setLoad({ left: '47.2895vw', top: '5.75vw' })
       setFlag(0)
-      React.axios('post', 'http://106.13.18.48/users/register', 60001, setLoad, setFlag,
-        { username, password, email, phone_number }).then(
-          res => {
-            console.log(res, 'app');
-            // navigate('/home')
-          },
-        )
+      React.axios('post', 'http://39.98.41.126:31100/user/register', setLoad, setFlag,
+        { username, password, phone }, navigate)
     }
   };
   return (
@@ -59,23 +54,7 @@ export default function Register() {
             name="register"
             onFinish={onFinish}>
             <Form.Item
-              name="email"
-              label="E-mail"
-              rules={[
-                {
-                  pattern: "^\\s*\\w+(?:\\.{0,1}[\\w-]+)*@[a-zA-Z0-9]+(?:[-.][a-zA-Z0-9]+)*\\.[a-zA-Z]+\\s*$",
-                  message: '邮箱格式错误,应为：-xxx@xxx'
-                },
-                {
-                  required: true,
-                  message: 'Please input your E-mail!',
-                },
-              ]}
-            >
-              <Input />
-            </Form.Item>
-            <Form.Item
-              name="phone_number"
+              name="phone"
               label="Phone Number"
               rules={[
                 {
@@ -100,8 +79,8 @@ export default function Register() {
               label="Username"
               rules={[
                 {
-                  pattern: "^[\\u4e00-\\u9fa5a-zA-Z0-9]{6,12}$",
-                  message: '用户名必须为6-12位字母/数字/中文'
+                  pattern: "^[\\u4e00-\\u9fa5a-zA-Z0-9]{4,12}$",
+                  message: '用户名必须为4-12位字母/数字/中文'
                 },
                 {
                   required: true,

@@ -20,8 +20,10 @@ React.getCookie=(cookieName) =>{
     return ''
   }
 //axios
-  React.axios =(type,url,setLoad,setFlag,data,params,blob) => {
+  React.axios =(type,url,setLoad,setFlag,data,back,setError,refresh,params,blob) => {
+
     return new Promise((resolve,reject)=>{
+
       // //公钥
       const PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDI3hf95L3aMonXCgG926Gt6nwft8RnhM+6UHVieE4N58V0swNvFVU4XRrlNn4o2vU8eZ5z1c8s2AHEl65ck5kiAPjC82nCgWd4j1sdr2Wvz18B+/DT4PLZum4QzwIAviQfafp1qVbC6fYj0BLyDXmeaO5gi3X19U0kIhUPWbzAqQIDAQAB';
       // AES秘钥
@@ -52,12 +54,22 @@ React.getCookie=(cookieName) =>{
           }      
           if(200===response.data.code||!response.data.code){
             //回复
-            if(response.data.code&& typeof setFlag ==='function'){
+            if(response.data.code&& (typeof setFlag ==='function'||typeof back === 'function')){
               React.alert(response.data.msg, 1, () => {
-                  setFlag(1)
               })
-            }            
-            
+              if(typeof setFlag ==='function'){
+                setFlag(1)
+
+              }
+              if(typeof back === 'function'){
+                console.log('回退');
+                back(-1)
+              }
+            }
+                        
+            if(refresh&&typeof refresh === 'function'){
+              refresh()
+            }
             //判断是否是获取文件
             if(blob){
               let imageType = response.headers['content-type'];   //获取图片类型
@@ -73,13 +85,16 @@ React.getCookie=(cookieName) =>{
                 if(response.headers.authorization){
                   document.cookie = `header=${response.headers.authorization}`;
                   document.cookie = `permission=${data.position}`;
-                  document.cookie = `user=${data.id}`;
+                  document.cookie = `user=${data.userId}`;
                 }
               resolve(data)//使用返回的data
             }
           }    
           //错误时
           else{
+            if(typeof setError=== 'function'){
+              setError(1)
+            }
             React.alert(response.data.msg, 0, () => {
               if(typeof setFlag ==='function'){
                 setFlag(1)
@@ -88,8 +103,11 @@ React.getCookie=(cookieName) =>{
         },
         error=>{
           if(typeof setLoad ==='function'){
-          setLoad(0);
-        };
+            setLoad(0);
+          };
+          if(typeof setError=== 'function'){
+            setError(1)
+          }
         React.alert('异常错误，可能是服务器问题', 0, () => {if(typeof setFlag ==='function'){
           setFlag(1)
         }})}
@@ -118,21 +136,21 @@ React.alert=(data,type, callback)=> { //回调函数
         'max-width': '90%',
         'font-size': '1.0526vw',
         'text-align': 'center',
-        'background-color': type?'rgb(246, 255, 237)':'rgb(229, 197, 192)',
+        'background-color': type?'rgb(246, 255, 237)':'rgb(243, 217, 213)',
         // 'border-radius': '15px',
         'position': 'absolute',
         'top': '15%',
         'left': '50%',
         'transform': 'translate(-50%, -50%)',
         'padding-left': '1.5vw',
-        'z-index':'999',
+        'z-index':'99999999',
         'opacity':0
       
     });
 
     css(alert_text, {
         'padding': '.6579vw .9868vw',
-        'z-index':'999',
+        'z-index':'99999999',
         // 'border-bottom': '1px solid #ddd'
     });
 
@@ -143,7 +161,7 @@ React.alert=(data,type, callback)=> { //回调函数
         
         'width':'2vw',
         'height':'2vw  ',
-        'z-index':'999',
+        'z-index':'99999999',
         'cursor': 'pointer'
     });
 
@@ -196,6 +214,22 @@ function css(targetObj, cssObj) {
     }
     targetObj.style.cssText = str;
 }
+// function maxZindex(){
+//   var body = document.getElementsByTagName('body')[0];
+//   var all = body.getElementsByTagName('*');
+//   var len = all.length;
+//   var i =0;
+//   var max=0;
+//   for(;i<len;i++){
+//     if(getComputedStyle(all[i],'position')!='static'){
+//       var zindex = getComputedStyle(all[i],'z-index') - 0;
+//       if(max<zindex){
+//         max=zindex;
+//       }
+//     }
+//   }
+//   return max;
+// }
 //sleep
 React.sleep=(delay)=> {
   var start = (new Date()).getTime();
