@@ -20,22 +20,35 @@ export default function MyTable(props) {
     //加载中
     const [load, setLoad] = React.useState(false)
     // 请求数据
-    const getData = (page, pageSize) => {
-        React.axios('get', props.url, 200, setLoad, '', data).then(
+    const getData = () => {
+        setLoad(1)
+        React.axios('post', 'http://39.98.41.126:31100/resource/brr', setLoad, '', { projectName: 'Jiao' }).then(
             res => {
-                setData(res)
-                setTotal(res.total);
-                setTitle(Object.keys(res[0]));
+                console.log(res, 'brr');
+                // setData(res)
+                // setTotal(res.total);
+                // setTitle(Object.keys(res[0]));
             }
         )
     }
     React.useEffect(() => {
-        // getData(1, 10);
+        // setLoad(1)
+        // React.axios('get', 'http://39.98.41.126:31100/resource/brr', setLoad, '', { projectName: 'Jiao' }
+        // ).then(
+        //     res => {
+        //         console.log(res, 'biao');
+        //         // handleData(res)
+        //         // if (res.length !== total) {
+        //         //     setTotal(res.length)
+        //         // }
+        //     },
+        // )
+        getData()
     }, []);
 
-    const handleChange = (page, pageSize) => {
-        getData(page, pageSize)
-    }
+    // const handleChange = (page, pageSize) => {
+    //     getData(page, pageSize)
+    // }
     // 设置列配置
     React.useEffect(() => {
         // 列描述数据对象
@@ -61,16 +74,17 @@ export default function MyTable(props) {
                 style={{ width: '100%', height: '100%' }}
                 // 列的配置项
                 columns={columns}
-                loading={load}
+                loading={load ? true : false}
                 // 数据数组
                 dataSource={data}
                 // 分页设置
-                pagination={{
-                    defaultPageSize: 10,
-                    total: total,
-                    onChange: handleChange,
-                    showQuickJumper: true,
-                }}
+                pagination={false}
+            // pagination={{
+            //     defaultPageSize: 10,
+            //     total: total,
+            //     onChange: handleChange,
+            //     showQuickJumper: true,
+            // }}
             />
         </>
     );

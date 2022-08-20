@@ -6,7 +6,7 @@ import React from 'react';
 import './index.css'
 
 const Namel = () => {
-    const navigate = useNavigate();
+    const navigate = useNavigate()
     //是否显示加载中
     const [load, setLoad] = React.useState()
     //flag是阀门，不允许狂点按钮
@@ -18,14 +18,13 @@ const Namel = () => {
             React.axios('post', 'http://39.98.41.126:31100/user/login', setLoad, setFlag,
                 { username: values.username, password: values.password }).then(
                     res => {
-                        console.log(typeof res, 'app');
-                        navigate(-1)
+                        document.cookie = `username=${res.username}`;
+                        navigate('/userproject')
                     },
                 )
         }
     };
     return (
-
         <div>
             {load ? <Loading {...load} /> : ''}
             <Form
@@ -46,8 +45,8 @@ const Namel = () => {
                             message: 'Please input your Username!',
                         },
                         {
-                            pattern: "^[\\u4e00-\\u9fa5a-zA-Z0-9]{6,12}$",
-                            message: '用户名必须为6-12位字母/数字/中文'
+                            pattern: "^[\\u4e00-\\u9fa5a-zA-Z0-9]{4,12}$",
+                            message: '用户名必须为4-12位字母/数字/中文'
                         }
                     ]}
                 >

@@ -1,11 +1,12 @@
-import { Alert, Spin } from 'antd';
+import { Spin } from 'antd';
 import React from 'react';
+import './index.css'
 
 const App = (props) => (
   <Spin 
     tip="Loading..."
     style={{
-      position:'absolute',left:props.left,top:props.top
+      position:'absolute',zIndex:'999999999999999999999999!important',left:props.left,top:props.top
       }}>
   </Spin>
 );

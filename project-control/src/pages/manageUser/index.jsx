@@ -1,6 +1,10 @@
 import { DownOutlined } from '@ant-design/icons';
 import { Badge, Table, Dropdown, Menu, Space, } from 'antd';
 import React from 'react';
+import Loading from '../../component/loading'
+import Freeze from '../../component/freeze'
+import Search from '../../component/search'
+
 import './index.css'
 const columns = [
     {
@@ -45,107 +49,65 @@ export default function ManageUser(props) {
     const [total, setTotal] = React.useState(0);
     // 数据源
     const [data, setData] = React.useState([]);
+    const [expandeddata, setExpandeddata] = React.useState({});
     //加载中
     const [load, setLoad] = React.useState(0)
     const [load1, setLoad1] = React.useState(0)
+    const [load2, setLoad2] = React.useState(0)
+    const [freeze, setFreeze] = React.useState({ show: 0, id: 0 })
+
     //flag是阀门，不允许狂点按钮
     const [flag, setFlag] = React.useState(1)
-    // 请求数据
-    const getData = () => {
+    const freezeProject = (id) => {
+        setFreeze({ show: 1, id })
+    }
+    const logout = (id) => {
         if (flag) {
-            setLoad(1)
+            setLoad2({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('get', 'http://39.98.41.126:31100/user/getAllUser', setLoad,
-            ).then(
-                res => {
-                    console.log(res, '用户信息');
-                    setData(res.map(i => {
-                        return ({
-                            key: i.id,
-                            username: i.username,
-                            state: <span><Badge status={i.onLive ? "success" : 'default'} />{i.onLive ? "在线" : '离线'}</span>,
-                            regdate: i.registerDate,
-                            control:
-                                <Space size="middle">
-                                    <a>强制下线</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-                                    <Dropdown overlay={
-                                        <Menu
-                                            items={[
-                                                {
-                                                    key: '1',
-                                                    label: '1天',
-                                                },
-                                                {
-                                                    key: '2',
-                                                    label: '1月',
-                                                },
-                                                {
-                                                    key: '3',
-                                                    label: '1年',
-                                                },
-                                            ]}
-                                        />}>
-                                        <a>
-                                            冻结用户 <DownOutlined />
-                                        </a>
-                                    </Dropdown>
-                                </Space>
-
-
-                        })
-                    }))
-                    if (res.length !== total) {
-                        setTotal(res.length)
-                    }
-                },
+            React.axios('post', 'http://39.98.41.126:31100/user/forceLogout', setLoad2, setFlag, { userId: id }).then(
+                getData()
             )
         }
     }
+    const handleData = (obj) => {
+        setData(obj.map(i => {
+            return ({
+                key: i.userId,
+                username: i.username,
+                state: <span><Badge status={i.onLive ? "success" : i.position === -1 ? 'processing' : 'default'} />{i.onLive ? "在线" : i.position === -1 ? '已冻结' : '离线'}</span>,
+                regdate: i.registerDate ? i.registerDate.split('T')[0] + '  ' + i.registerDate.split('T')[1] : '',
+                control:
+                    <Space size="middle">
+                        {i.onLive ? <a onClick={() => logout(i.userId)}>强制下线</a> : ''}
+                        {i.position === 0 ? <a onClick={() => freezeProject(i.userId)}>冻结用户</a> : ''}
+                    </Space>
+            })
+        }))
+    }
+    // 请求数据
+    const getData = () => {
+        setLoad(1)
+        React.axios('get', 'http://39.98.41.126:31100/user/getAllUser', setLoad,
+        ).then(
+            res => {
+                handleData(res)
+                if (res.length !== total) {
+                    setTotal(res.length)
+                }
+            },
+        )
+    }
+    
     React.useEffect(() => {
         getData()
     }, []);
 
-    // for (let i = 10; i > 0; i--) {
-    //     data.push({
-    //         key: i,
-    //         username: '用户名',
-    //         state: <span><Badge status="success" />在线</span>,
-    //         regdate: '2022-8-9',
-    //         control:
-
-    //             <Space size="middle">
-    //                 <a>强制下线</a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-    //                 <Dropdown overlay={
-    //                     <Menu
-    //                         items={[
-    //                             {
-    //                                 key: '1',
-    //                                 label: '1天',
-    //                             },
-    //                             {
-    //                                 key: '2',
-    //                                 label: '1月',
-    //                             },
-    //                             {
-    //                                 key: '3',
-    //                                 label: '1年',
-    //                             },
-    //                         ]}
-    //                     />}>
-    //                     <a>
-    //                         冻结用户 <DownOutlined />
-    //                     </a>
-    //                 </Dropdown>
-    //             </Space>
-
-
-    //     })
-    // }
 
     // 处理分页
-    function handleChange(page, pageSize) {
-        getData(page, pageSize)
-    }
+    // function handleChange(page, pageSize) {
+    //     getData(page, pageSize)
+    // }
     const expandedRowRender = (record) => {
         const columns = [
             {
@@ -171,42 +133,57 @@ export default function ManageUser(props) {
 
             },
         ];
-        const data = [];
-
-        for (let i = record.key; i > 0; --i) {
-            data.push({
-                key: i.toString(),
-                projectname: '项目名称项目名称项目名称项目名称项目名称项目名称项目名称项目名称',
-                url: <a href="www.baidu.com">www.baidu.comwww.baidu.comwww.baidu.com</a>,
-                desc: '项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介项目简介',
-            });
-        }
-
-        return <Table loading={load1 ? true : false} columns={columns} dataSource={data} pagination={false} />;
+        return <Table loading={load1 ? true : false} columns={columns} dataSource={expandeddata[record.key]} pagination={false} />;
     };
-    return (
-        <div className='manageUser'> <strong className='manageUser-title'>用户管理</strong>
-            {/* 默认是可以换行显示的 还行 */}
 
+    const getExpandData = (expanded, record) => {
+        if (expanded) {
+            setLoad1({ left: '47.2895vw', top: '5.75vw' })
+            React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad1, '',
+                { userId: record.key }).then(res => {
+                    expandeddata[record.key] = res.map(i => {
+                        return ({
+                            key: i.projectId,
+                            projectname: i.projectName,
+                            url: <a href={i.projectUrl}>{i.projectUrl}</a>,
+                            desc: i.projectDesc
+                        })
+                    });
+                    setExpandeddata(expandeddata)
+                })
+        }
+    }
+
+    return (
+        <div className='manageUser'> <div style={{ display: 'flex', marginBottom: '20px', width: '100%', justifyContent: 'space-between' }}><strong style={{ display: 'flex', width: '50%' }} className='manageUser-title'>用户管理</strong>
+            <div style={{ display: 'flex' }}><Search type='user' func={handleData} /></div></div>
+            {/* 默认是可以换行显示的 还行 */}
+            {freeze.show === 1 ? <Freeze setFreeze={setFreeze} id={freeze.id} type={'user'} getData={getData} /> : ''}
+            {load2 ? <Loading {...load2} /> : ''}
             <Table
                 // 列的配置项
                 // expandable={{
 
                 //     defaultExpandedRowKeys: ['0'],
                 // }}
-                expandedRowRender={(record) => expandedRowRender(record)}
+                expandable={{
+                    expandedRowRender: (record) => expandedRowRender(record),
+                    onExpand: (expanded, record) => getExpandData(expanded, record)
+                }}
+                // expandedRowRender
                 defaultPageSize={10}
                 columns={columns}
                 loading={load ? true : false}
                 // 数据数组
                 dataSource={data}
                 // 分页设置
-                pagination={{
-                    defaultPageSize: 10,
-                    total: total,
-                    onChange: handleChange,
-                    showQuickJumper: true,
-                }}
+                pagination={false}
+            // pagination={{
+            //     defaultPageSize: 10,
+            //     total: total,
+            //     onChange: handleChange,
+            //     showQuickJumper: true,
+            // }}
             />
         </div>
 

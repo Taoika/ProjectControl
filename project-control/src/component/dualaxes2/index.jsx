@@ -1,84 +1,45 @@
 import React, { useState, useEffect } from 'react';
 import ReactDOM from 'react-dom';
 import { DualAxes } from '@ant-design/plots';
+import Loading from '../loading'
 
-const DemoDualAxes = () => {
+const DemoDualAxes = (props) => {
+    const [load, setLoad] = React.useState()
     //时间和两个柱
-    const countData = [
-        {
-            time: '2019-03',
-            value: 350,
-            type: '成功次数',
-        },
-        {
-            time: '2019-04',
-            value: 900,
-            type: '成功次数',
-        },
-        {
-            time: '2019-05',
-            value: 300,
-            type: '成功次数',
-        },
-        {
-            time: '2019-06',
-            value: 450,
-            type: '成功次数',
-        },
-        {
-            time: '2019-07',
-            value: 470,
-            type: '成功次数',
-        },
-        {
-            time: '2019-03',
-            value: 220,
-            type: '错误次数',
-        },
-        {
-            time: '2019-04',
-            value: 300,
-            type: '错误次数',
-        },
-        {
-            time: '2019-05',
-            value: 250,
-            type: '错误次数',
-        },
-        {
-            time: '2019-06',
-            value: 220,
-            type: '错误次数',
-        },
-        {
-            time: '2019-07',
-            value: 362,
-            type: '错误次数',
-        },
-    ];
+    const [countData, setCountData] = React.useState([])
     //线和时间
-    const transformData = [
-        {
-            time: '2019-03',
-            成功率: 800,
-        },
-        {
-            time: '2019-04',
-            成功率: 600,
-        },
-        {
-            time: '2019-05',
-            成功率: 400,
-        },
-        {
-            time: '2019-06',
-            成功率: 380,
-        },
-        {
-            time: '2019-07',
-            成功率: 220,
-        },
-    ];
+    const [transformData, setTransformData] = React.useState([])
+    React.useEffect(() => {
+        console.log();
+        setLoad({ left: '17.2895vw', top: '10.75vw' })
+        React.axios('post', 'http://39.98.41.126:31100/apiError/err', setLoad, '', { dateType: props.dateType.toString(), projectName: 'Jiao' }).then(
+            res => {
+                let data1 = [];
+                let data2 = [];
+                res.map(i => {
+                    data1.push({
+                        time: i.dateStr,
+                        value: i.defeatCount,
+                        type: '错误次数',
+                    })
+                    data1.push({
+                        time: i.dateStr,
+                        value: i.count,
+                        type: '成功次数',
+                    })
+                    data2.push(
+                        {
+                            time: i.dateStr,
+                            成功率: i.percent,
+                        },
+                    )
+                })
+                setCountData(data1)
+                setTransformData(data2)
+            },
+        )
+    }, [props])
+
     const config = {
         data: [countData, transformData],
         smooth: true,
@@ -107,7 +68,9 @@ const DemoDualAxes = () => {
             },
         ],
     };
-    return <DualAxes style={{ display: 'flex', width: '90%', height: '90%', marginBottom: '10px' }} {...config} />;
+    return <div style={{ display: 'flex', position: 'relative', width: '90%', height: '90%', marginBottom: '10px' }}>
+        {load ? <Loading {...load} /> : ''}<DualAxes style={{ width: '100%', height: '100%' }}
+            {...config} /></div>;
 };
 
 export default DemoDualAxes

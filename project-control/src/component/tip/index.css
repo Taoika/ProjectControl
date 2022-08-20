@@ -1,0 +1,68 @@
+.Tip-Tip {
+    position: absolute;
+    display: flex;
+    align-content: space-around;
+    justify-content: center;
+    flex-wrap: wrap;
+    z-index: 2;
+    width: 778px;
+    height: 596px;
+    left: 50%;
+    transform: translateX(-50%);
+    top: 10%;
+
+    background: #FFFFFF;
+    border-radius: 12px;
+    overflow: hidden;
+}
+
+.red {
+    color: red;
+}
+
+.orange {
+    color: orange;
+}
+
+.Tip-TipName {
+    width: 100%;
+    height: 45px;
+    margin-top: -38px;
+    padding-left: 20px;
+    padding-top: 10px;
+
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 100;
+    font-size: 20px;
+    line-height: 24px;
+    letter-spacing: 0.035em;
+    color: #FFFFFF;
+
+    /* 主色 */
+
+    background: #3D6DB5;
+    border-radius: 12px 12px 0px 0px;
+}
+
+.Tip-cancelBtn:hover {
+    cursor: pointer;
+    color: 'white'
+}
+
+.Tip-cancelBtn {
+    position: absolute;
+    left: 92%;
+}
+
+.Tip-mask {
+    position: absolute;
+    display: block;
+    /* opacity: 0.6; */
+    top: 0;
+    ;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    background-color: rgba(0, 0, 0, 0.6);
+}

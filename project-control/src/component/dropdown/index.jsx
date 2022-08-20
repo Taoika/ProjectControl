@@ -20,7 +20,7 @@ export default function Index(props) {
             }}
             onChange={handleChange}
         >{props && props.option ? props.option.map((v, i) => {
-            return (<Option value={i + 1}>&nbsp;{v}</Option>)
+            return (<Option key={i + 1} value={i + 1}>&nbsp;{v}</Option>)
         }) : ''}
         </Select>
     )

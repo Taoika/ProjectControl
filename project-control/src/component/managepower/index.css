@@ -1,0 +1,39 @@
+.Managepower {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    width: 100%;
+}
+
+.Managepower-content {
+    width: calc(100% - 150px);
+    height: calc(100% - 64px);
+    background-color: #fff;
+}
+
+.Managepower-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.Managepower-agree,
+.Managepower-refuse {
+    height: 36px;
+    width: 103px;
+    margin: 5px 0;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 5px;
+}
+
+.Managepower-agree {
+    color: #fff;
+    background-color: rgba(71, 167, 255, 0.88);
+}
+
+.Managepower-refuse {
+    color: rgba(102, 102, 102, 1);
+    background-color: #DADADA;
+}

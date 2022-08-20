@@ -1,0 +1,57 @@
+.Updateproject-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+}
+
+.Updateproject {
+    width: 926px;
+    padding: 20px 0 0 0;
+}
+
+.Updateproject-head {
+    padding: 10px 0;
+    font-size: 24px;
+}
+
+.Updateproject-content {
+    position: relative;
+}
+
+#Updateproject {
+    padding: 40px 60px;
+    border: 1px solid rgba(0, 0, 0, .1);
+    background-color: #fff;
+}
+
+#Updateproject button {
+    margin: 0 auto;
+}
+
+.Updateproject-pack {
+    position: absolute;
+    bottom: 8.5vh;
+    left: 22vw;
+}
+
+#Updateproject .ant-input-textarea-show-count.ant-input-textarea-in-form-item:after {
+    margin: 5px 0 -22px 0;
+}
+
+@media screen and (max-width:670px) {
+    #Updateproject {
+        width: 100vw;
+    }
+}
+
+@media screen and (min-width:1890px) {
+    .Updateproject {
+        width: 60vw;
+    }
+
+    .Updateproject-pack {
+        position: absolute;
+        bottom: 100px;
+        left: 12vw;
+    }
+}

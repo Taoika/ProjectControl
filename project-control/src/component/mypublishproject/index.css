@@ -1,0 +1,38 @@
+.Mypublishproject {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+}
+
+.Mypublishproject-content {
+    width: calc(100% - 150px);
+    height: calc(100% - 64px);
+    background-color: #fff;
+}
+
+.Mypublishproject-btn {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.Mypublishproject-agree,
+.Mypublishproject-refuse {
+    height: 36px;
+    width: 103px;
+    margin: 5px 0;
+    border: 1px solid rgba(0, 0, 0, .1);
+    border-radius: 5px;
+}
+
+.Mypublishproject-agree {
+    color: #fff;
+    background-color: rgba(71, 167, 255, 0.88);
+}
+
+.Mypublishproject-refuse {
+    color: rgba(102, 102, 102, 1);
+    background-color: #DADADA;
+}
