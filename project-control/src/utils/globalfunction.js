@@ -47,9 +47,7 @@ React.getCookie=(cookieName) =>{
         responseType:blob?'blob':'json'  //或者是blob
       })
       .then(
-        response=>{
-          console.log(response,'response');
-          if(typeof setLoad ==='function'){
+        response=>{          if(typeof setLoad ==='function'){
             setLoad(0);
           }      
           if(200===response.data.code||!response.data.code){
@@ -61,9 +59,7 @@ React.getCookie=(cookieName) =>{
                 setFlag(1)
 
               }
-              if(typeof back === 'function'){
-                console.log('回退');
-                back(-1)
+              if(typeof back === 'function'){                back(-1)
               }
             }
                         
@@ -80,7 +76,7 @@ React.getCookie=(cookieName) =>{
             //返回数据
             if(response.data.data){
               AESKey=type.toUpperCase()==='GET'?'Z6XB<$F9fA5jRT92':AESKey;
-              const data=JSON.parse( decryptAES(AESKey,response.data.data))
+              let data=JSON.parse( decryptAES(AESKey,response.data.data))
                 //判断是否设置cookie
                 if(response.headers.authorization){
                   document.cookie = `header=${response.headers.authorization}`;

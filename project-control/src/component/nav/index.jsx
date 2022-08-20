@@ -1,4 +1,5 @@
-import { Layout, Menu } from 'antd';
+import { Layout, Menu, } from 'antd';
+import { UserOutlined } from '@ant-design/icons';
 import React from 'react'
 import { Link, useNavigate, Outlet } from 'react-router-dom'
 import './index.css'
@@ -26,24 +27,33 @@ export default function Nav(props) {
     let k = 1;
     for (const i in props) {
         defaultSelectedKeys = (k++) === 2 ? i : defaultSelectedKeys;
-        if (i === 'out') {
+        if (props[i]) {
+            if (i === 'out') {
+                items.push({
+                    key: i,
+                    label: <a onClick={logout}>{props[i]}</a>
+                })
+                continue
+            }
+            if (i === 'message') {
+                items.push({
+                    key: i,
+                    label: <MyDrawer />
+                })
+                continue
+            }
+            if (i === 'username') {
+                items.push({
+                    key: i,
+                    label: <div style={{ cursor: 'default' }}><UserOutlined />&nbsp;&nbsp;{props[i]}</div>
+                })
+                continue
+            }
             items.push({
                 key: i,
-                label: <a onClick={logout}>{props[i]}</a>
+                label: <Link to={`/${i}`}>{props[i]}</Link>
             })
-            continue
         }
-        if (i === 'message') {
-            items.push({
-                key: i,
-                label: <MyDrawer />
-            })
-            continue
-        }
-        items.push({
-            key: i,
-            label: <Link to={`/${i}`}>{props[i]}</Link>
-        })
     }
 
     return (

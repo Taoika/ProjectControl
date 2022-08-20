@@ -6,6 +6,7 @@ import React from 'react';
 import './index.css'
 
 const Namel = () => {
+    const navigate = useNavigate()
     //是否显示加载中
     const [load, setLoad] = React.useState()
     //flag是阀门，不允许狂点按钮
@@ -17,10 +18,8 @@ const Namel = () => {
             React.axios('post', 'http://39.98.41.126:31100/user/login', setLoad, setFlag,
                 { username: values.username, password: values.password }).then(
                     res => {
-                        console.log(res);
-                        // if(res.position===-1){
-                        //     React.alert(res)
-                        // }
+                        document.cookie = `username=${res.username}`;
+                        navigate('/userproject')
                     },
                 )
         }

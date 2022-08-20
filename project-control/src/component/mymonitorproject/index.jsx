@@ -6,6 +6,7 @@ import { useNavigate } from 'react-router-dom'
 import ApplyDetail from '../applyDetail'
 export default function Mymonitorproject() {
     const navigate = useNavigate()
+    const [load, setLoad] = React.useState(0)
 
     // 每页数据量
     // const [pageSize,setPageSize]=React.useState(100);
@@ -18,23 +19,30 @@ export default function Mymonitorproject() {
     const [msg, setMsg] = React.useState({ show: 0, name: '', id: 0 })
     // 列头
     // const [title,setTitle]=React.useState([]);
-
     // 请求数据
     const gomonitor = (id) => {
         document.cookie = `monitor=${id}`
         navigate('/monitor')
     }
     React.useEffect(() => {
-
+        setLoad({ left: '47.2895vw', top: '5.75vw' })
+        React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad, '',
+            { userId: React.getCookie('user') }).then(res => {
+                let data = []
+                res.map(i => {
+                    if (i.appliType === 2) {
+                        data.push({
+                            key: i.projectName,
+                            projectname: i.projectName,
+                            url: <a href={i.projectUrl}>{i.projectUrl}</a>,
+                            desc: i.projectDesc,
+                            action: <button onClick={() => gomonitor(1)} className='Mymonitorproject-agree'>进入监控</button>
+                        })
+                    }
+                })
+                setData(data)
+            })
     }, []);
-    for (let i = 30; i > 0; i--) {
-        data.push({
-            projectname: '申请人',
-            url: <a href="">www.baidu.com</a>,
-            desc: '简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介简介',
-            action: <button onClick={() => gomonitor(1)} className='Mymonitorproject-agree'>进入监控</button>
-        })
-    }
     // 列描述数据对象
     const columns = [
         {
@@ -79,6 +87,7 @@ export default function Mymonitorproject() {
                 <Table
                     // 列的配置项
                     columns={columns}
+                    loading={load ? true : false}
                     // 数据数组
                     dataSource={data}
                     // // 滚动配置

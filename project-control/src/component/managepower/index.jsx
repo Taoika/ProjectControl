@@ -5,6 +5,8 @@ import { useNavigate } from 'react-router-dom'
 import './index.css'
 import ApplyDetail from '../applyDetail'
 export default function Managepower() {
+    const [load, setLoad] = React.useState(0)
+
     // 每页数据量
     // const [pageSize,setPageSize]=React.useState(100);
     // 总数据量
@@ -15,18 +17,31 @@ export default function Managepower() {
     const [data, setData] = React.useState([]);
     // 列头
     // const [title,setTitle]=React.useState([]);
-
-
-    React.useEffect(() => {
-
-    }, []);
-    for (let i = 30; i > 0; i--) {
-        data.push({
-            name: '用户名',
-            action: <button className='Managepower-refuse'>撤销权限</button>
-
-        })
+    const cancelpower = (userId) => {
+        setLoad(1)
+        React.axios('post', 'http://39.98.41.126:31100/userproject/updatePermission', setLoad, '',
+            { userId, projectName: React.getCookie('managename') }, '', '', getData)
     }
+    const getData = () => {
+        setLoad(1)
+        React.axios('post', 'http://39.98.41.126:31100/userproject/viewPermission', setLoad, '',
+            { projectName: React.getCookie('managename') }).then(res => {
+                let data = [];
+                res.map(i => {
+                    if (i.type === 2) {
+                        data.push({
+                            key: i,
+                            name: i.username,
+                            action: <button onClick={() => cancelpower(i.userId)} className='Managepower-refuse'>撤销权限</button>
+                        })
+                    }
+                })
+                setData(data)
+            })
+    }
+    React.useEffect(() => {
+        getData()
+    }, []);
     // 列描述数据对象
     const columns = [
         {
@@ -59,6 +74,7 @@ export default function Managepower() {
                 <Table
                     // 列的配置项
                     columns={columns}
+                    loading={load ? true : false}
                     // 数据数组
                     dataSource={data}
                     // // 滚动配置

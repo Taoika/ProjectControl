@@ -31,7 +31,6 @@ export default function UserProject() {
         // })
         setLoad({ left: '47.2895vw', top: '5.75vw' })
         React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '', '', '', setError).then(res => {
-            console.log(res);
             setData(res)
         })
 

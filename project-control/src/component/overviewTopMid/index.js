@@ -11,7 +11,7 @@ export default function Index() {
     <div className='overview-top-mid'>
     <div style={{display: 'flex',width:'100%',justifyContent:'end'}}>
     <ClockCircleOutlined style={{ position: 'relative', top: '9px', right: '-90px', zIndex: '999' }} />
-        <Dropdown option={['今日','今月','今年']} func={setTime} />
+        <Dropdown option={['24小时','30天','12月']} func={setTime} />
       </div>
       <div style={{display: 'flex',width:'100%',height:'10vh'}}>
         <div style={{display: 'flex',height:'100%',flexWrap:'wrap',marginLeft:'10px',alignContent:'start'}}>

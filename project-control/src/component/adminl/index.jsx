@@ -3,10 +3,13 @@ import { Button, Form, Input, } from 'antd';
 import Loading from '../loading'
 import React from 'react';
 import './index.css'
+import { useNavigate } from 'react-router-dom';
 
 
 
 export default function Adminl() {
+    const navigate = useNavigate()
+
     //是否显示加载中
     const [load, setLoad] = React.useState()
     //flag是阀门，不允许狂点按钮
@@ -18,8 +21,8 @@ export default function Adminl() {
             React.axios('post', 'http://39.98.41.126:31100/user/login', setLoad, setFlag,
                 { username: 'Admin', password: values.command }).then(
                     res => {
-                        console.log(res, '管理员');
                         // navigate('/home')
+                        navigate('/manageproject')
                     },
                 )
         }

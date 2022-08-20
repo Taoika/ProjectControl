@@ -23,7 +23,6 @@ export default function ProjectAduit() {
         setMsg({ show: 1, name, url, desc })
     }
     const agreeOrRefuse = (status, projectId) => {
-        console.log(status, projectId);
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
@@ -99,11 +98,12 @@ export default function ProjectAduit() {
     return (
         <div className='projectAduit'>
             <div className="projectAduit-content">
-                {load ? <Loading {...load} /> : ''}
                 {msg.show ? <ApplyDetail desc={msg.desc} url={msg.url} name={msg.name} setMsg={setMsg} /> : ''}
                 <Table
                     // 列的配置项
                     columns={columns}
+                    loading={load ? true : false}
+
                     // 数据数组
                     dataSource={data}
                     // // 滚动配置

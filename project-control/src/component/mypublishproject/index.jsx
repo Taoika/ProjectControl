@@ -1,7 +1,6 @@
 import { Table, Badge, Space } from 'antd';
 import React from 'react'
 import { useNavigate } from 'react-router-dom'
-import Loading from '../loading'
 
 import './index.css'
 import ApplyDetail from '../applyDetail'
@@ -39,18 +38,24 @@ export default function Mypublishproject() {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
         React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad, '',
             { userId: React.getCookie('user') }).then(res => {
-                setData(res.map(i => {
-                    return ({
-                        projectname: i.projectName,
-                        url: <a href={i.projectUrl}>{i.projectUrl}</a>,
-                        desc: i.projectDesc,
-                        status: <span><Badge status={i.status ? "success" : 'default'} />{i.status ? "已通过" : '待审核'}</span>,
-                        action: <div className='Mypublishproject-btn'>
-                            <button onClick={() => gomonitor(i.projectId, i.projectName)} className='Mypublishproject-agree'>进入监控</button>
-                            <button onClick={() => gomanage(i.projectId, i.projectName, i.projectUrl, i.projectDesc)} className='Mypublishproject-refuse'>进入管理</button>
-                        </div>
-                    })
-                }))
+                let data = [];
+                res.map(i => {
+                    if (i.appliType === 1) {
+                        data.push({
+                            key: i.projectName,
+                            projectname: i.projectName,
+                            url: <a href={i.projectUrl}>{i.projectUrl}</a>,
+                            desc: i.projectDesc,
+                            status: <span><Badge status={i.status ? "success" : 'default'} />{i.status ? "已通过" : '待审核'}</span>,
+                            action: i.status ? <div className='Mypublishproject-btn'>
+                                <button onClick={() => gomonitor(i.projectId, i.projectName)} className='Mypublishproject-agree'>进入监控</button>
+                                <button onClick={() => gomanage(i.projectId, i.projectName, i.projectUrl, i.projectDesc)} className='Mypublishproject-refuse'>进入管理</button>
+                            </div> : ''
+                        })
+                    }
+
+                })
+                setData(data)
             })
     }, []);
     // 列描述数据对象
@@ -100,11 +105,11 @@ export default function Mypublishproject() {
     return (
         <div className='Mypublishproject'>
             <div className="Mypublishproject-content">
-                {load ? <Loading {...load} /> : ''}
                 {msg.show ? <ApplyDetail id={msg.id} name={msg.name} setMsg={setMsg} /> : ''}
                 <Table
                     // 列的配置项
                     columns={columns}
+                    loading={load ? true : false}
                     // 数据数组
                     dataSource={data}
                     // // 滚动配置

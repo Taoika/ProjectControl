@@ -34,9 +34,7 @@ export default function ProjectPublish() {
   const [form] = Form.useForm();
 
   // 提交回调
-  const onFinish = (values) => {
-    console.log('从表单获取到的值:', values);
-    // React.axios()
+  const onFinish = (values) => {    // React.axios()
   };
   const showTip = () => {
     setTip(1)

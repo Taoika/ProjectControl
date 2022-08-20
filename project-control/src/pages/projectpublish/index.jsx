@@ -42,7 +42,6 @@ export default function ProjectPublish() {
 
   // 提交回调
   const onFinish = (values) => {
-    console.log('从表单获取到的值:', values, React.getCookie('user'), 'id');
     const { projectName, projectDesc, projectUrl } = values
     if (flag) {
       setLoad({ left: '47.2895vw', top: '5.75vw' })

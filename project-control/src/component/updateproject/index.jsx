@@ -22,7 +22,12 @@ export default function Updateproject() {
     },
   };
   const confirm = () => {
-    message.info('Clicked on Yes.');
+    if (flag) {
+      setLoad({ left: '47.2895vw', top: '5.75vw' })
+      setFlag(0)
+      React.axios('post', 'http://39.98.41.126:31100/project/delete', setLoad, setFlag,
+        { projectName: React.getCookie('managename') }).then()
+    }
   };
   // 按钮位置占比配置
   const tailFormItemLayout = {

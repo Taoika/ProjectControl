@@ -7,11 +7,10 @@ export default function Index(props) {
     const [load, setLoad] = React.useState(0)
     const myRef = React.useRef();
     const search = () => {
-        setLoad({ left: '50vw', top: '10vw' })
+        setLoad({ left: '-30vw', top: '0vw' })
         if (props.type === 'project') {
             React.axios('post', 'http://39.98.41.126:31100/project/getByCondition', setLoad, '',
                 { projectName: myRef.current.value }).then(res => {
-                    console.log(res);
                     props.func(res)
                 })
         }
@@ -30,8 +29,8 @@ export default function Index(props) {
     }
     return (
         <>
-            {load ? <Loading {...load} /> : ''}
             <div className='search'>
+                {load ? <Loading {...load} /> : ''}
                 <input className='search-input' type="text" ref={myRef} onKeyDown={(e) => handleKeyDown(e)} placeholder='搜索' />
                 <button className='search-btn' onClick={search}><img src={searchIcon} alt="搜索" /></button>
             </div>

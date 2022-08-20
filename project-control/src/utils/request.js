@@ -160,11 +160,7 @@ export const myBodyAxios = (url,type,data,PUBLIC_KEY) => {
       }),
     })
     .then(
-      response=>{
-        console.log('AES解密前的数据:',response.data);
-        response.data.data=decryptAES(AESKey,response.data.data);
-        console.log('AES解密后的数据:',response.data);
-        resolve(response.data)//使用返回的data
+      response=>{        response.data.data=decryptAES(AESKey,response.data.data);        resolve(response.data)//使用返回的data
       },
       error=>reject(error)
     )
@@ -184,11 +180,7 @@ export const myPathAxios = (url,type,data,PUBLIC_KEY) => {
       params:data,
     })
     .then(
-      response=>{
-        console.log('AES解密前的数据:',response.data);
-        response.data.data=decryptAES('Z6XB<$F9fA5jRT92',response.data.data);
-        console.log('AES解密后的数据:',response.data);
-        resolve(response.data)//使用返回的data
+      response=>{        response.data.data=decryptAES('Z6XB<$F9fA5jRT92',response.data.data);        resolve(response.data)//使用返回的data
       },
       error=>reject(error)
     )
@@ -201,9 +193,7 @@ export const myPathAxios = (url,type,data,PUBLIC_KEY) => {
 // formData.append('age',18);
 // Object.prototype.toString.call(data)!=='[Object FormDta]'方法用于通用的检测数据类型 toString()对function不管用 
 // // FormData数据不可以直接打印 可用entries枚举对象 得到键值对
-// for (var key of formData.entries()) {
-    // console.log(key);
-// }
+// for (var key of formData.entries()) {// }
 
 // 通用的加密请求方式 不传参的地方记得占位
 // 参数 请求地址 类型 路径参数 请求体 公钥
@@ -225,11 +215,7 @@ export const myAxios = (url,type,params,data,PUBLIC_KEY) => {
       }):'',
     })
     .then(
-      response=>{
-        console.log('AES解密前的数据:',response.data);
-        response.data.data=decryptAES(AESKey,response.data.data);
-        console.log('AES解密后的数据:',response.data);
-        resolve(response.data)//使用返回的data
+      response=>{        response.data.data=decryptAES(AESKey,response.data.data);        resolve(response.data)//使用返回的data
       },
       error=>reject(error)
     )

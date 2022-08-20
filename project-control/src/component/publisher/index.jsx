@@ -7,6 +7,7 @@ import React, { useState } from 'react'
 import './index.css'
 export default function Publisher() {
     const [load, setLoad] = React.useState(0)
+    const [load2, setLoad2] = React.useState(0)
     // 每页数据量
     // const [pageSize,setPageSize]=React.useState(100);
     // 总数据量
@@ -22,7 +23,21 @@ export default function Publisher() {
 
 
     React.useEffect(() => {
-
+        setLoad2(1)
+        React.axios('post', 'http://39.98.41.126:31100/userproject/viewPermission', setLoad2, '',
+            { projectName: React.getCookie('managename') }).then(res => {
+                let data = [];
+                res.map(i => {
+                    if (i.type === 1) {
+                        data.push({
+                            key: i.username,
+                            name: i.username,
+                            state: <span><Badge status={!i.onLive ? "success" : i.position === -1 ? 'processing' : 'default'} />{!i.onLive ? "在线" : i.position === -1 ? '已冻结' : '离线'}</span>,
+                        })
+                    }
+                })
+                setData(data)
+            })
     }, []);
     const [isModalVisible, setIsModalVisible] = useState(false);
     const invite = (id) => {
@@ -44,13 +59,6 @@ export default function Publisher() {
     const handleCancel = () => {
         setIsModalVisible(false);
     };
-    for (let i = 30; i > 0; i--) {
-        data.push({
-            name: '用户名',
-            state: <span><Badge status="success" />在线</span>,
-
-        })
-    }
     // 列描述数据对象
     const columns = [
         {
@@ -80,7 +88,7 @@ export default function Publisher() {
                     <Search type='user' func={setInvitor} />
                     <ul style={{ display: 'flex', flexWrap: 'wrap', width: '100%', marginTop: '10px' }}>
                         {invitor.map(i => {
-                            return (<li style={{ display: 'flex', width: '100%' }} ><UserOutlined />&nbsp;{i.username}
+                            return (<li key={i.username} style={{ display: 'flex', width: '100%' }} ><UserOutlined />&nbsp;{i.username}
                                 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i style={{ color: 'skyblue', cursor: 'pointer' }} onClick={() => invite(i.userId)}>邀请</i>
                             </li>)
                         })}
@@ -106,6 +114,7 @@ export default function Publisher() {
                 <Table
                     // 列的配置项
                     columns={columns}
+                    loading={load2 ? true : false}
                     // 数据数组
                     dataSource={data}
                     // // 滚动配置

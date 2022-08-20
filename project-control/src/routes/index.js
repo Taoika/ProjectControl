@@ -1,3 +1,4 @@
+import React from 'react'
 import { Navigate} from 'react-router-dom'
  import Dlzc from '../pages/logandreg'
  import Namel from '../component/namel'
@@ -18,7 +19,6 @@ import Projectpermission from '../pages/projectpermission'
 import Mymonitorproject from '../component/mymonitorproject'
 import Mypublishproject from '../component/mypublishproject'
 import Managepublishproject from '../pages/managepublishproject'
-import Confirmpower from '../component/confirmpower'
 import Managepower from '../component/managepower'
 import Updateproject from '../component/updateproject'
 import Publisher from '../component/publisher'
@@ -134,10 +134,6 @@ const routes = [
         element: <Managepublishproject />,
         children:[
             {
-                path: 'confirmpower',
-                element: <Confirmpower />,
-            },
-            {
                 path: 'managepower',
                 element: <Managepower />,
             },
@@ -151,9 +147,13 @@ const routes = [
             },
             {
                 path: '',
-                element: <Navigate to='confirmpower' />
+                element: <Navigate to='managepower' />
             }
         ]
+    },
+    {
+        path: '',
+        element: <Navigate to={React.getCookie('user')?React.getCookie('user')==='root'?'/manageproject':'/userproject':'/dlzc'} />
     }
  ]
  export default routes 

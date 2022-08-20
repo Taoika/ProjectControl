@@ -23,7 +23,6 @@ export default function ProjectMonitoring() {
     const getData = () => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
         React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '', '', '', setError).then(res => {
-            console.log(res);
             setData(res)
         })
     }
@@ -49,7 +48,7 @@ export default function ProjectMonitoring() {
                 <div className="projectMonitoring-content-all">
                     {data.map(i => {
                         if (i.status === 1 || i.status === -1) {
-                            return (<Badge.Ribbon text={i.status === 1 ? '运行中' : '已冻结'} color={i.status === 1 ? 'green' : 'blue'}>
+                            return (<Badge.Ribbon key={i.projectId} text={i.status === 1 ? '运行中' : '已冻结'} color={i.status === 1 ? 'green' : 'blue'}>
                                 <div className="projectMonitoring-title">{i.projectName}</div>
                                 <div className="projectMonitoring-synopsis">简介:&nbsp;&nbsp;&nbsp;{i.projectDesc}</div>
                                 <div className="projectMonitoring-PVAndUVAndTime">

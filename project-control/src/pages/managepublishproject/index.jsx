@@ -5,7 +5,7 @@ import './index.css'
 export default function Managepublishproject() {
     return (
         <div className='Managepublishproject-container'>
-            <ManageSider confirmpower='监控审核' managepower='权限管理' updateproject='更新项目' publisher='发布管理' />
+            <ManageSider managepower='权限管理' updateproject='更新项目' publisher='发布管理' />
             <Outlet />
         </div>
     )
