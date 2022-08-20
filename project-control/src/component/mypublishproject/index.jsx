@@ -21,8 +21,7 @@ export default function Mypublishproject() {
     // const [title,setTitle]=React.useState([]);
 
     //去监控
-    const gomonitor = (id, name) => {
-        document.cookie = `monitor=${id}`
+    const gomonitor = (name) => {
         document.cookie = `monitorname=${name}`
         navigate('/monitor')
     }
@@ -36,7 +35,7 @@ export default function Mypublishproject() {
     }
     React.useEffect(() => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad, '',
+        React.axios('post', 'http://106.13.18.48/monitor/userproject/MyProject', setLoad, '',
             { userId: React.getCookie('user') }).then(res => {
                 let data = [];
                 res.map(i => {
@@ -48,7 +47,7 @@ export default function Mypublishproject() {
                             desc: i.projectDesc,
                             status: <span><Badge status={i.status ? "success" : 'default'} />{i.status ? "已通过" : '待审核'}</span>,
                             action: i.status ? <div className='Mypublishproject-btn'>
-                                <button onClick={() => gomonitor(i.projectId, i.projectName)} className='Mypublishproject-agree'>进入监控</button>
+                                <button onClick={() => gomonitor(i.projectName)} className='Mypublishproject-agree'>进入监控</button>
                                 <button onClick={() => gomanage(i.projectId, i.projectName, i.projectUrl, i.projectDesc)} className='Mypublishproject-refuse'>进入管理</button>
                             </div> : ''
                         })

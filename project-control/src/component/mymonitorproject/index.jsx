@@ -20,13 +20,13 @@ export default function Mymonitorproject() {
     // 列头
     // const [title,setTitle]=React.useState([]);
     // 请求数据
-    const gomonitor = (id) => {
-        document.cookie = `monitor=${id}`
+    const gomonitor = (projectname) => {
+        document.cookie = `monitorname=${projectname}`
         navigate('/monitor')
     }
     React.useEffect(() => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad, '',
+        React.axios('post', 'http://106.13.18.48/monitor/userproject/MyProject', setLoad, '',
             { userId: React.getCookie('user') }).then(res => {
                 let data = []
                 res.map(i => {
@@ -36,7 +36,7 @@ export default function Mymonitorproject() {
                             projectname: i.projectName,
                             url: <a href={i.projectUrl}>{i.projectUrl}</a>,
                             desc: i.projectDesc,
-                            action: <button onClick={() => gomonitor(1)} className='Mymonitorproject-agree'>进入监控</button>
+                            action: <button onClick={() => gomonitor(i.projectName)} className='Mymonitorproject-agree'>进入监控</button>
                         })
                     }
                 })

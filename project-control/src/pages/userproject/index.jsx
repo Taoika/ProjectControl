@@ -15,7 +15,7 @@ export default function UserProject() {
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://39.98.41.126:31100/application/releaseApp', setLoad, setFlag,
+            React.axios('post', 'http://106.13.18.48/monitor/application/releaseApp', setLoad, setFlag,
                 { projectId: id, number: '1' })
         }
     }
@@ -30,7 +30,7 @@ export default function UserProject() {
         //     }
         // })
         setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '', '', '', setError).then(res => {
+        React.axios('get', 'http://106.13.18.48/monitor/project/allProject', setLoad, '', '', '', setError).then(res => {
             setData(res)
         })
 

@@ -20,12 +20,11 @@ export default function Head() {
     }, [React.getCookie('user')])
     return (
         <Nav
-            message={type !== -1 ? '1' : ''}
+            message={type === 0 ? '1' : ''}
             dlzc={type === -1 ? '登录注册' : ''}
             manageproject={type === 1 ? '项目管理' : ''}
             manageUser={type === 1 ? '用户管理' : ''}
             logpack={type === 1 ? '日志' : ''}
-            monitor='监控'
             userproject={type === 0 ? '全部项目' : ''}
             projectpublish={type === 0 ? '发布项目' : ''}
             projectpermission={type === 0 ? '权限查看' : ''}

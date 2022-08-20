@@ -12,7 +12,7 @@ export default function Index() {
   const [time,setTime]=React.useState(1)
   React.useEffect(() => {
       setLoad({ left: '17.2895vw', top: '10.75vw' })
-      React.axios('post', 'http://39.98.41.126:31100/apiError/err ', setLoad, '', {dateType:time.toString(),projectName: React.getCookie('monitorname') }).then(
+      React.axios('post', 'http://106.13.18.48/monitor/apiError/err ', setLoad, '', {dateType:time.toString(),projectName: React.getCookie('monitorname') }).then(
           res => {
               setData(res)
           },
@@ -30,7 +30,7 @@ const [mask,setMask] = React.useState(0)
   return (
     <>
       <div className='monitorMask' style={{ position:'absolute',zIndex:mask?'1001':'-1',left:'-10vw',top:'-10vh',width:'110vw',height:'110vh',background:mask?'rgba(0,0,0,.1)':'rgba(0,0,0,0)'}}></div>
-    <div onMouseEnter={movein} onMouseLeave={moveout} style={{boxShadow:show?'0px 0px 10px 30px rgba(0,0,0,.1)':'', transform:show?'scale(1.01)':'scale(1)', position:'relative',zIndex:show?'1001':'1'}} className='overview-top-mid'>
+    <div onMouseEnter={movein} onMouseLeave={moveout} style={{boxShadow:show?'0px 0px 10px 10px rgba(0,0,0,.1)':'', transform:show?'scale(1.01)':'scale(1)', position:'relative',zIndex:show?'1001':'1'}} className='overview-top-mid'>
       {load ? <Loading {...load} /> : ''}
     <div style={{display: 'flex',width:'100%',justifyContent:'end'}}>
     <ClockCircleOutlined style={{ position: 'relative', top: '9px', right: '-90px', zIndex: '999' }} />

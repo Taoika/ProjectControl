@@ -5,15 +5,14 @@ export default function Index() {
     const [mask, setMask] = React.useState(0)
     let [data, setData] = React.useState({})
     React.useEffect(() => {
-        React.axios('post', 'http://39.98.41.126:31100/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 data = { ...data, ...res }
                 setData(data)
             },
         )
-        React.axios('post', 'http://39.98.41.126:31100/performance/FP ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/performance/FP ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
-                console.log(res, 'FP');
                 data = { ...data, ...res }
                 setData(data)
             },
@@ -30,7 +29,7 @@ export default function Index() {
     return (
         <>
             <div className='monitorMask' style={{ position: 'absolute', zIndex: mask ? '1001' : '-1', left: '-10vw', top: '-10vh', width: '110vw', height: '110vh', background: mask ? 'rgba(0,0,0,.1)' : 'rgba(0,0,0,0)' }}></div>
-            <div onMouseEnter={movein} onMouseLeave={moveout} style={{ boxShadow: show ? '0px 0px 10px 30px rgba(0,0,0,.1)' : '', transform: show ? 'scale(1.01)' : 'scale(1)', position: 'relative', zIndex: show ? '1001' : '1' }} className='overview-top-right'>
+            <div onMouseEnter={movein} onMouseLeave={moveout} style={{ boxShadow: show ? '0px 0px 10px 10px rgba(0,0,0,.1)' : '', transform: show ? 'scale(1.01)' : 'scale(1)', position: 'relative', zIndex: show ? '1001' : '1' }} className='overview-top-right'>
                 <div className='overview-top-left1'>
                     <div style={{ width: '50%' }} className='overview-top-left1-top'>
                         <div>

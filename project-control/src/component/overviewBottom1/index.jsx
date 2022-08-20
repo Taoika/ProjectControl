@@ -13,7 +13,7 @@ export default function Index() {
 
     React.useEffect(() => {
         setLoad({ left: '17.2895vw', top: '10.75vw' })
-        React.axios('post', 'http://39.98.41.126:31100/jsError/err', setLoad, '', { type: time.toString(), projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/jsError/err', setLoad, '', { type: time.toString(), projectName: React.getCookie('monitorname') }).then(
             res => {
                 setData(res)
             },
@@ -30,7 +30,7 @@ export default function Index() {
     return (
         <>
             <div className='monitorMask' style={{ position: 'absolute', zIndex: mask ? '1001' : '-1', left: '-10vw', top: '-10vh', width: '110vw', height: '110vh', background: mask ? 'rgba(0,0,0,.1)' : 'rgba(0,0,0,0)' }}></div>
-            <div onMouseEnter={movein} onMouseLeave={moveout} style={{ width: '40.5vw', boxShadow: show ? '0px 0px 10px 30px rgba(0,0,0,.1)' : '', transform: show ? 'scale(1.01)' : '', position: 'relative', zIndex: show ? '1001' : '1', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
+            <div onMouseEnter={movein} onMouseLeave={moveout} style={{ width: '40.5vw', boxShadow: show ? '0px 0px 10px 10px rgba(0,0,0,.1)' : '', transform: show ? 'scale(1.01)' : '', position: 'relative', zIndex: show ? '1001' : '1', display: 'flex', justifyContent: 'center', alignItems: 'center', flexWrap: 'wrap' }}>
                 {load ? <Loading {...load} /> : ''}
                 <div style={{ display: 'flex', width: '100%', marginLeft: '10px', justifyContent: 'space-between' }}>
                     <strong style={{ display: 'flex' }}>JS错误数</strong>

@@ -11,7 +11,7 @@ export default function Nav(props) {
     const navigate = useNavigate();
     const { Header } = Layout;
     const logout = () => {
-        React.axios('get', 'http://39.98.41.126:31100/user/logout')
+        React.axios('get', 'http://106.13.18.48/monitor/user/logout')
         navigate('/dlzc')
         document.cookie.split(';').forEach(cookie => document.cookie = cookie.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`));
     }

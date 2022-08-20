@@ -13,12 +13,12 @@ export default function MyDrawer() {
 
     const agreeOrrefuse = (type, applicationId) => {
         setLoad({ left: '10.2895vw', top: '5.75vw' })
-        React.axios('post', 'http://39.98.41.126:31100/application/update', setLoad, '', { applicationId, number: type }, '', '', getData).then(
+        React.axios('post', 'http://106.13.18.48/monitor/application/update', setLoad, '', { applicationId, number: type }, '', '', getData).then(
         )
     }
     const getData = () => {
         setLoad({ left: '10.2895vw', top: '5.75vw' })
-        React.axios('get', 'http://39.98.41.126:31100/message/watch', setLoad).then(
+        React.axios('get', 'http://106.13.18.48/monitor/message/watch', setLoad).then(
             res => {
                 setData(res)
             },
@@ -26,7 +26,7 @@ export default function MyDrawer() {
     }
     const getData2 = () => {
         setLoad({ left: '10.2895vw', top: '5.75vw' })
-        React.axios('get', 'http://39.98.41.126:31100/application/MySend', setLoad).then(
+        React.axios('get', 'http://106.13.18.48/monitor/application/MySend', setLoad).then(
             res => {
                 setData2(res)
             },
@@ -53,7 +53,7 @@ export default function MyDrawer() {
     };
     const readed = (applicationId) => {
         setLoad({ left: '10.2895vw', top: '5.75vw' })
-        React.axios('post', 'http://39.98.41.126:31100/application/deleteMySend', setLoad, '', { applicationId }, '', '', getData2).then(
+        React.axios('post', 'http://106.13.18.48/monitor/application/deleteMySend', setLoad, '', { applicationId }, '', '', getData2).then(
         )
     }
     return (
