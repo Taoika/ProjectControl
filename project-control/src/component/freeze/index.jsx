@@ -24,12 +24,12 @@ export default function Freeze(props) {
     setLoad({ left: '47.2895vw', top: '5.75vw' })
     //冻结用户
     if (props.type === 'user') {
-      React.axios('post', 'http://106.13.18.48/monitor/user/freezeUser', setLoad, '',
+      React.axios('post', 'http://39.98.41.126:31100/user/freezeUser', setLoad, '',
         { userId: props.id, date: time }, back, '', props.getData).then(props.getData())
     }
     //冻结项目
     if (props.type === 'project') {
-      React.axios('post', 'http://106.13.18.48/monitor/project/update', setLoad, '',
+      React.axios('post', 'http://39.98.41.126:31100/project/update', setLoad, '',
         { projectId: props.id, pass: '-1', time }, back, '', props.getData)
     }
   }

@@ -24,7 +24,7 @@ export default function Publisher() {
 
     React.useEffect(() => {
         setLoad2(1)
-        React.axios('post', 'http://106.13.18.48/monitor/userproject/viewPermission', setLoad2, '',
+        React.axios('post', 'http://39.98.41.126:31100/userproject/viewPermission', setLoad2, '',
             { projectName: React.getCookie('managename') }).then(res => {
                 let data = [];
                 res.map(i => {
@@ -44,7 +44,7 @@ export default function Publisher() {
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://106.13.18.48/monitor/application/releaseApp', setLoad, setFlag,
+            React.axios('post', 'http://39.98.41.126:31100/application/releaseApp', setLoad, setFlag,
                 { userId: id, projectId: React.getCookie('manage'), number: '2' })
         }
     }

@@ -13,7 +13,7 @@ export default function Index() {
 
     React.useEffect(() => {
         setLoad({ left: '17.2895vw', top: '10.75vw' })
-        React.axios('post', 'http://106.13.18.48/monitor/jsError/err', setLoad, '', { type: time.toString(), projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://39.98.41.126:31100/jsError/err', setLoad, '', { type: time.toString(), projectName: React.getCookie('monitorname') }).then(
             res => {
                 setData(res)
             },

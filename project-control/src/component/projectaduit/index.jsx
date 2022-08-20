@@ -26,14 +26,14 @@ export default function ProjectAduit() {
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://106.13.18.48/monitor/project/update', setLoad, setFlag,
+            React.axios('post', 'http://39.98.41.126:31100/project/update', setLoad, setFlag,
                 { projectId, pass: status }, '', '', getData)
         }
     }
     // 请求数据
     const getData = () => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('get', 'http://106.13.18.48/monitor/project/allProject', setLoad, '',
+        React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '',
         ).then(res => {
             let data = [];
             res.map(i => {
