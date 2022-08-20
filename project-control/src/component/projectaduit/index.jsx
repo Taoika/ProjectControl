@@ -35,11 +35,12 @@ export default function ProjectAduit() {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
         React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '',
         ).then(res => {
+            console.log(res);
             let data = [];
             res.map(i => {
                 if (i.status === 0) {
                     data.push({
-                        key: i.id,
+                        key: i.projectId,
                         applicant: i.username,
                         time: i.registerDate.replace('T', ' '),
                         projectName: <i style={{ cursor: 'pointer', color: 'rgb(93, 178, 255)' }} onClick={() => detail(i.projectName, i.projectUrl, i.projectDesc)}>{i.projectName}</i>,
@@ -103,7 +104,6 @@ export default function ProjectAduit() {
                     // 列的配置项
                     columns={columns}
                     loading={load ? true : false}
-
                     // 数据数组
                     dataSource={data}
                     // // 滚动配置

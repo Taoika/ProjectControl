@@ -22,6 +22,9 @@ import Managepublishproject from '../pages/managepublishproject'
 import Managepower from '../component/managepower'
 import Updateproject from '../component/updateproject'
 import Publisher from '../component/publisher'
+import LogPack from '../pages/logpack'
+import LogDetail from '../pages/logdetail'
+
 const routes = [
     //登录注册
     {
@@ -67,8 +70,16 @@ const routes = [
             {
                 path: '',
                 element: <Navigate to='projectmonitoring' />
-            }
+            },
         ]
+    },
+    {
+        path: 'logpack',
+        element: <LogPack/>
+    },
+    {
+        path: 'logdetail',
+        element: <LogDetail/>
     },
     //监控
     {

@@ -97,6 +97,7 @@ export default function ManageUser(props) {
             },
         )
     }
+    
     React.useEffect(() => {
         getData()
     }, []);
@@ -133,6 +134,7 @@ export default function ManageUser(props) {
         ];
         return <Table loading={load1 ? true : false} columns={columns} dataSource={expandeddata[record.key]} pagination={false} />;
     };
+
     const getExpandData = (expanded, record) => {
         if (expanded && expandeddata[record.key] === undefined) {
             setLoad1({ left: '47.2895vw', top: '5.75vw' })
@@ -150,6 +152,7 @@ export default function ManageUser(props) {
                 })
         }
     }
+
     return (
         <div className='manageUser'> <div style={{ display: 'flex', marginBottom: '20px', width: '100%', justifyContent: 'space-between' }}><strong style={{ display: 'flex', width: '50%' }} className='manageUser-title'>用户管理</strong>
             <div style={{ display: 'flex' }}><Search type='user' func={handleData} /></div></div>
