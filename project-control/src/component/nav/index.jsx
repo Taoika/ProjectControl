@@ -34,7 +34,7 @@ export default function Nav(props) {
                     <img src={logo} alt="项目管控平台" />
                     项目管控平台
                 </div>
-                <Menu mode="horizontal" defaultSelectedKeys={[defaultSelectedKeys]} items={items} />
+                <Menu className='head-menu' mode="horizontal" defaultSelectedKeys={[defaultSelectedKeys]} items={items} />
             </Header >
             <Outlet/>
         </div >
