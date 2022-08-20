@@ -11,7 +11,7 @@ export default function Index() {
     const [mask, setMask] = React.useState(0)
     React.useEffect(() => {
         setLoad({ left: '35.2895vw', top: '5.75vw' })
-        React.axios('post', 'http://39.98.41.126:31100/blankError/brr', setLoad, '', { type: time.toString(), projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/api/blankError/brr', setLoad, '', { type: time.toString(), projectName: React.getCookie('monitorname') }).then(
             res => {
                 setData(res)
             },

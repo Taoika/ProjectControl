@@ -22,7 +22,7 @@ export default function ProjectMonitoring() {
     }
     const getData = () => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '', '', '', setError).then(res => {
+        React.axios('get', 'http://106.13.18.48/monitor/api/project/allProject', setLoad, '', '', '', setError).then(res => {
             setData(res)
         })
     }
@@ -41,9 +41,10 @@ export default function ProjectMonitoring() {
 
     }, [])
     return (
+        <>
+        {freeze.show === 1 ? <Freeze setFreeze={setFreeze} id={freeze.id} type='project' getData={getData} /> : ''}
         <div className="projectMonitoring-right">
             {load ? <Loading {...load} /> : ''}
-            {freeze.show === 1 ? <Freeze setFreeze={setFreeze} id={freeze.id} type='project' getData={getData} /> : ''}
             {!error ? <div><div className="projectMonitoring-search"><Search type='project' func={setData} /></div>
                 <div className="projectMonitoring-content-all">
                     {data.map(i => {
@@ -80,6 +81,7 @@ export default function ProjectMonitoring() {
                 subTitle="抱歉，服务器发生了问题，或者是没有资源，正在抢修中....." />
             }
         </div>
+        </>
     )
 }
 

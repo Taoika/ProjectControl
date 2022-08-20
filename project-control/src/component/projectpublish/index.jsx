@@ -39,7 +39,7 @@ export default function ProjectPublish() {
   const showTip = () => {
     setTip(1)
   }
-
+  
   return (
     <div className="projectPublish-container">
       {tip ? <Tip setTip={setTip} /> : ''}

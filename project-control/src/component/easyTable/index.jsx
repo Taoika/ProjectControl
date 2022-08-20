@@ -22,7 +22,7 @@ export default function MyTable(props) {
     // 请求数据
     const getResourceData = (props) => {
         setLoad(1)
-        React.axios('post', 'http://39.98.41.126:31100/resource/brr', setLoad, '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/api/resource/brr', setLoad, '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 // setData(res)
                 // setTitle(Object.keys(res[0]));
@@ -47,7 +47,7 @@ export default function MyTable(props) {
     }
     const getJsData = () => {
         setLoad(1)
-        React.axios('post', 'http://39.98.41.126:31100/jsError/urlErr', setLoad, '', { projectName: React.getCookie('monitorname') }
+        React.axios('post', 'http://106.13.18.48/monitor/api/jsError/urlErr', setLoad, '', { projectName: React.getCookie('monitorname') }
         ).then(
             res => {
                 setData(res)
@@ -58,7 +58,7 @@ export default function MyTable(props) {
     }
     const getApiData = () => {
         setLoad(1)
-        React.axios('post', 'http://39.98.41.126:31100/apiError/methodError', setLoad, '', { projectName: React.getCookie('monitorname') }
+        React.axios('post', 'http://106.13.18.48/monitor/api/apiError/methodError', setLoad, '', { projectName: React.getCookie('monitorname') }
         ).then(
             res => {
                 setData(res)
@@ -81,7 +81,7 @@ export default function MyTable(props) {
             title.map((i) => {
                 return {
                     // 列头显示文字
-                    title: i === 'url' ? '页面' : i === 'count' ? 'js错误数' : i === 'percent' ? 'js错误率(%)' : i === 'uri' ? '接口' : i === 'avgResponseTime' ? '平均响应时间(ms)' : i === 'rate' ? '失败率(%)' : i,
+                    title: i === 'url' ? '页面' : i === 'count' ? 'js错误数' : i === 'percent' ? 'js错误率(%)' : i === 'uri' ? '接口' : i === 'avgResponseTime' ? '平均响应时间(ms)' : i === 'rate' ? '失败率(%)' :i === 'method' ? '请求方法' : i,
                     // 列数据对应的标识
                     dataIndex: i,
                     // 如果dataIndex不是唯一的 那么key就是必须的 唯一标识

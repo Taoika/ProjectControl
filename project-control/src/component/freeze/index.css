@@ -6,7 +6,7 @@
     left: 50%;
     transform: translateX(-50%);
     top: 30%;
-
+    padding-left: 10px;
     background: #FFFFFF;
     border-radius: 12px;
     overflow: hidden;
@@ -14,15 +14,15 @@
 
 
 .Freeze-FreezeName {
-    width: 100%;
+    width: calc(100% + 10px);
     height: 45px;
-    padding-left: 20px;
+    padding-left: 10px;
     padding-top: 10px;
-
+    margin-left: -10px;
     font-family: 'Inter';
     font-style: normal;
     font-weight: 100;
-    font-size: 20px;
+    font-size: 10px;
     line-height: 24px;
     letter-spacing: 0.035em;
     color: #FFFFFF;
@@ -49,11 +49,11 @@
     /* opacity: 0.6; */
     top: 0;
     ;
-    margin-left: -20vw;
-    margin-top: -20vh;
+    /* margin-left: -100vw; */
+    /* margin-top: -100vh; */
 
-    width: 120vw;
-    height: 120vh;
+    width: 100vw;
+    height: 100vh;
     z-index: 1;
     background-color: rgba(0, 0, 0, 0.6);
 }

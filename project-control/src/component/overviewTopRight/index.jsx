@@ -5,14 +5,14 @@ export default function Index() {
     const [mask, setMask] = React.useState(0)
     let [data, setData] = React.useState({})
     React.useEffect(() => {
-        React.axios('post', 'http://39.98.41.126:31100/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/api/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 console.log(res);
                 data = { ...data, ...res }
                 setData(data)
             },
         )
-        React.axios('post', 'http://39.98.41.126:31100/performance/FP ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/api/performance/FP ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 data = { ...data, ...res }
                 setData(data)
@@ -34,7 +34,7 @@ export default function Index() {
                 <div className='overview-top-left1'>
                     <div style={{ width: '50%' }} className='overview-top-left1-top'>
                         <div>
-                            <strong className='overview-top-left1-top-value'>{data.ThisWeekAvgTime ? data.ThisWeekAvgTime.toFixed(2) + 'ms' : '0ms'}</strong>
+                            <strong style={{width:'9vw',height:'5vh'}} className='overview-top-left1-top-value'>{data.ThisWeekAvgTime ? data.ThisWeekAvgTime.toFixed(2) + 'ms' : '0ms'}</strong>
                             <span>首次渲染耗时</span>
                             <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.rate ? data.rate + '%' : '--%↑'}</strong></span>
                         </div>
@@ -49,7 +49,7 @@ export default function Index() {
                             <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.resourceCountIncreRate ? data.resourceCountIncreRate + '%' : '--%↑'}</strong></span>
                         </div>
                     </div>
-                    <div style={{ width: '20vw' }}>新增错误数&nbsp;<span className='red'>{data.resourceCountIncre ? data.resourceCountIncre : 0}</span></div>
+                    <div style={{ width: '20vw',fontSize:'1vw'  }}>新增错误数&nbsp;<span className='red'>{data.resourceCountIncre ? data.resourceCountIncre : 0}</span></div>
 
                 </div>
             </div>

@@ -18,7 +18,7 @@ export default function Adminl() {
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://39.98.41.126:31100/user/login', setLoad, setFlag,
+            React.axios('post', 'http://106.13.18.48/monitor/api/user/login', setLoad, setFlag,
                 { username: 'Admin', password: values.command }).then(
                     res => {
                         // navigate('/home')

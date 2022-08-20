@@ -9,13 +9,13 @@ export default function Index(props) {
     const search = () => {
         setLoad({ left: '-30vw', top: '0vw' })
         if (props.type === 'project') {
-            React.axios('post', 'http://39.98.41.126:31100/project/getByCondition', setLoad, '',
+            React.axios('post', 'http://106.13.18.48/monitor/api/project/getByCondition', setLoad, '',
                 { projectName: myRef.current.value }).then(res => {
                     props.func(res)
                 })
         }
         if (props.type === 'user') {
-            React.axios('post', 'http://39.98.41.126:31100/user/getUser', setLoad, '',
+            React.axios('post', 'http://106.13.18.48/monitor/api/user/getUser', setLoad, '',
                 { username: myRef.current.value }).then(res => props.func(res))
         }
 

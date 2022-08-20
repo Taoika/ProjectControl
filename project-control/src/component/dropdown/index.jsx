@@ -16,7 +16,7 @@ export default function Index(props) {
             defaultValue={1}
             style={{
                 width: 120,
-                fontSize: props && props.min ? '10px' : '14px'
+                fontSize: props && props.min ? '14px' : '16px'
             }}
             onChange={handleChange}
         >{props && props.option ? props.option.map((v, i) => {
