@@ -20,31 +20,57 @@ export default function MyTable(props) {
     //加载中
     const [load, setLoad] = React.useState(false)
     // 请求数据
-    const getData = () => {
+    const getResourceData = (props) => {
         setLoad(1)
-        React.axios('post', 'http://39.98.41.126:31100/resource/brr', setLoad, '', { projectName: 'Jiao' }).then(
+        React.axios('post', 'http://39.98.41.126:31100/resource/brr', setLoad, '', { projectName: React.getCookie('monitorname') }).then(
             res => {
-                console.log(res, 'brr');
                 // setData(res)
-                // setTotal(res.total);
                 // setTitle(Object.keys(res[0]));
+                let data1 = []
+                let max = 0;
+                res.map(i => {
+                    if (i.length > max) {
+                        max = i.length
+                    }
+                })
+                for (let i = 0; i < max; i++) {
+                    res.map(j => {
+                        if (i <= j.length - 1) {
+                            data1[i] = { ...data1[i], ...{ [j[i].tagname]: j[i].filename } }
+                        }
+                    })
+                }
+                setTitle(['link', 'object', 'img', 'script']);
+                setData(data1)
             }
         )
     }
+    const getJsData = () => {
+        setLoad(1)
+        React.axios('post', 'http://39.98.41.126:31100/jsError/urlErr', setLoad, '', { projectName: React.getCookie('monitorname') }
+        ).then(
+            res => {
+                setData(res)
+                setTitle(Object.keys(res[0]));
+
+            },
+        )
+    }
+    const getApiData = () => {
+        setLoad(1)
+        React.axios('post', 'http://39.98.41.126:31100/apiError/methodError', setLoad, '', { projectName: React.getCookie('monitorname') }
+        ).then(
+            res => {
+                console.log(res, 'apibiao');
+                setData(res)
+                setTitle(Object.keys(res[0]));
+
+            },
+        )
+    }
     React.useEffect(() => {
-        // setLoad(1)
-        // React.axios('get', 'http://39.98.41.126:31100/resource/brr', setLoad, '', { projectName: 'Jiao' }
-        // ).then(
-        //     res => {
-        //         console.log(res, 'biao');
-        //         // handleData(res)
-        //         // if (res.length !== total) {
-        //         //     setTotal(res.length)
-        //         // }
-        //     },
-        // )
-        getData()
-    }, []);
+        props.type === 'js' ? getJsData() : props.type === 'resource' ? getResourceData() : getApiData()
+    }, [props]);
 
     // const handleChange = (page, pageSize) => {
     //     getData(page, pageSize)
@@ -56,7 +82,7 @@ export default function MyTable(props) {
             title.map((i) => {
                 return {
                     // 列头显示文字
-                    title: i,
+                    title: i === 'url' ? '页面' : i === 'count' ? 'js错误数' : i === 'percent' ? 'js错误率(%)' : i === 'uri' ? '接口' : i === 'avgResponseTime' ? '平均响应时间(ms)' : i === 'rate' ? '失败率(%)' : i,
                     // 列数据对应的标识
                     dataIndex: i,
                     // 如果dataIndex不是唯一的 那么key就是必须的 唯一标识

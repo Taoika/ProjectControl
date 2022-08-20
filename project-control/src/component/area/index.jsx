@@ -1,74 +1,30 @@
 import React, { useState, useEffect } from 'react';
 import { Area } from '@ant-design/plots';
 
-const DemoArea = () => {
+const DemoArea = (props) => {
     const [data, setData] = useState([]);
 
     useEffect(() => {
+        if (props.data) {
+            let data1 = []
+            props.data.map(i => {
+                if (i.dateStr) {
+                    data1.push({
+                        date: i.dateStr,
+                        value: i.visits,
+                        category: '总PV'
+                    })
+                    data1.push({
+                        date: i.dateStr,
+                        value: i.visits_people,
+                        category: '总UV'
+                    })
+                }
 
-        setData([
-            {
-                date: '01/08 00:00',
-                value: 0,
-                category: '总PV'
-            },
-            {
-                date: '01/08 00:00',
-                value: 0,
-                category: '总UV'
-            },
-            {
-                date: '02/08 00:00',
-                value: 5,
-                category: '总PV'
-            },
-            {
-                date: '02/08 00:00',
-                value: 2,
-                category: '总UV'
-            },
-            {
-                date: '03/08 00:00',
-                value: 11,
-                category: '总PV'
-            },
-            {
-                date: '03/08 00:00',
-                value: 5,
-                category: '总UV'
-            },
-            {
-                date: '04/08 00:00',
-                value: 2,
-                category: '总PV'
-            },
-            {
-                date: '04/08 00:00',
-                value: 2,
-                category: '总UV'
-            },
-            {
-                date: '05/08 00:00',
-                value: 0,
-                category: '总PV'
-            },
-            {
-                date: '05/08 00:00',
-                value: 0,
-                category: '总UV'
-            },
-            {
-                date: '06/08 00:00',
-                value: 0,
-                category: '总PV'
-            },
-            {
-                date: '06/08 00:00',
-                value: 0,
-                category: '总UV'
-            },
-        ])
-    }, [])
+            })
+            setData(data1)
+        }
+    }, [props])
     const config = {
         data,
         smooth: true,
@@ -76,9 +32,9 @@ const DemoArea = () => {
         yField: 'value',
         isStack: false,
         seriesField: 'category',
-        // xAxis: {
-        //     type: 'category',
-        // },
+        xAxis: {
+            type: 'category',
+        },
         // yAxis: {
         //     label: {
         //         // 数值格式化为千分位

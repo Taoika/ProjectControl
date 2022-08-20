@@ -38,7 +38,7 @@ export default function Tip(props) {
         <div style={{ display: 'flex', alignContent: 'space-around', flexWrap: 'wrap', width: '90%', height: '10%', }}>
           <strong style={{ display: 'flex', width: '100%' }}>3. 下载依赖包</strong>
           <div style={{ display: 'flex', width: '100%', fontSize: '1.5vw', }}>
-            <a href="#">www.baidu.com</a>
+            <a href="https://github.com/JIaaoooo/MonitorServer/tree/monitor-client">https://github.com/JIaaoooo/MonitorServer/tree/monitor-client</a>
           </div>
         </div>
       </div>

@@ -19,3 +19,11 @@
     width: 0;
     /* margin-top: 10vh; */
 }
+
+tr .ant-table {
+    background: rgb(238, 249, 253);
+}
+
+td .ant-table-cell-row-hover {
+    background: rgb(195, 239, 255) !important;
+}

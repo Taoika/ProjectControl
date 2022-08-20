@@ -9,8 +9,8 @@ export default function Index() {
     const [load, setLoad] = React.useState()
     const [data, setData] = React.useState([])
     React.useEffect(() => {
-        setLoad({ left: '50.2895vw', top: '5.75vw' })
-        React.axios('post', 'http://39.98.41.126:31100/resource/count', setLoad, '', { projectName: 'Jiao' }).then(
+        setLoad({ left: '50.2895vw', top: '8.75vw' })
+        React.axios('post', 'http://39.98.41.126:31100/resource/count', setLoad, '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 let count = [{}, {}, {}, {}]
                 res.map((i, index) => {

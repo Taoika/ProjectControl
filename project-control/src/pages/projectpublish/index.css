@@ -19,7 +19,7 @@
 
 #projectPublish {
     padding: 40px 60px;
-    border: 1px solid rgba(0,0,0,.1);
+    border: 1px solid rgba(0, 0, 0, .3);
     background-color: #fff;
 }
 
@@ -34,7 +34,7 @@
 }
 
 #projectPublish .ant-input-textarea-show-count.ant-input-textarea-in-form-item:after {
-    margin:5px 0 -22px 0;
+    margin: 5px 0 -22px 0;
 }
 
 @media screen and (max-width:670px) {

@@ -16,13 +16,14 @@ export default function ProjectMonitoring() {
     const freezeProject = (id) => {
         setFreeze({ show: 1, id })
     }
-    const gomonitor = (id) => {
-        document.cookie = `monitor=${id}`
+    const gomonitor = (name) => {
+        document.cookie = `monitorname=${name}`
         navigate('/monitor')
     }
     const getData = () => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
         React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '', '', '', setError).then(res => {
+            console.log(res, 'allproject');
             setData(res)
         })
     }
@@ -52,16 +53,16 @@ export default function ProjectMonitoring() {
                                 <div className="projectMonitoring-title">{i.projectName}</div>
                                 <div className="projectMonitoring-synopsis">简介:&nbsp;&nbsp;&nbsp;{i.projectDesc}</div>
                                 <div className="projectMonitoring-PVAndUVAndTime">
-                                    <span className="projectMonitoring-PV">PV:99999999+</span>
-                                    <span className="projectMonitoring-UV">UV:99999999+</span>
-                                    <span className="projectMonitoring-time">首次渲染时间:9999999ms</span>
+                                    <span className="projectMonitoring-PV">{i.pV > 9999999 ? '9999999+' : `PV:${i.pV}`}</span>
+                                    <span className="projectMonitoring-UV">{i.uV > 9999999 ? '9999999+' : `UV:${i.uV}`}</span>
+                                    <span className="projectMonitoring-time">{i.registerDate ? '创建时间: ' + i.registerDate.replace('T', '  ') : 'adadwasd'}</span>
                                 </div>
                                 <div className="projectMonitoring-JSAndAPI">
-                                    <span className="projectMonitoring-JS">JS错误率:100%</span>
-                                    <span className="projectMonitoring-API">API成功率:100%</span>
+                                    <span className="projectMonitoring-JS">{i.username ? '创建用户: ' + i.username : ''}</span>
+                                    <span className="projectMonitoring-API">{i.rate ? 'API成功率: ' + i.rate + '' : ''}</span>
                                 </div>
                                 <div className="projectMonitoring-button">
-                                    <button onClick={() => gomonitor(6)} className="projectMonitoring-enter">进入监控</button>
+                                    <button onClick={() => gomonitor(i.projectName)} className="projectMonitoring-enter">进入监控</button>
                                     {i.status === 1 ? <button onClick={() => freezeProject(i.projectId)} className="projectMonitoring-freeze">冻结项目</button> : ''}
                                 </div>
                             </Badge.Ribbon>)

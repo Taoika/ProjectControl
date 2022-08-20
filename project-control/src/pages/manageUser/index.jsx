@@ -4,7 +4,6 @@ import React from 'react';
 import Loading from '../../component/loading'
 import Freeze from '../../component/freeze'
 import Search from '../../component/search'
-
 import './index.css'
 const columns = [
     {
@@ -135,7 +134,7 @@ export default function ManageUser(props) {
         return <Table loading={load1 ? true : false} columns={columns} dataSource={expandeddata[record.key]} pagination={false} />;
     };
     const getExpandData = (expanded, record) => {
-        if (expanded) {
+        if (expanded && expandeddata[record.key] === undefined) {
             setLoad1({ left: '47.2895vw', top: '5.75vw' })
             React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad1, '',
                 { userId: record.key }).then(res => {

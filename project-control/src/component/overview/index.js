@@ -14,8 +14,8 @@ export default function Overview() {
     <div className='overview'>
         <strong className='overview-title'>项目名称</strong>
         <div className='overview-top'>
-          <OverviewTopLeft/>
-          <OverviewTopMid/>
+          <OverviewTopLeft />
+          <OverviewTopMid />
           <OverviewTopRight/>    
         </div>
         <div className='overview-bottom'>
