@@ -36,7 +36,7 @@ export default function Register() {
     if (flag) {
       setLoad({ left: '47.2895vw', top: '5.75vw' })
       setFlag(0)
-      React.axios('post', 'http://106.13.18.48/monitor/api/user/register', setLoad, setFlag,
+      React.axios('post', 'http://39.98.41.126:31100/user/register', setLoad, setFlag,
         { username, password, phone }, navigate)
     }
   };

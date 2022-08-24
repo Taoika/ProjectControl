@@ -22,7 +22,7 @@ export default function MyTable(props) {
     // 请求数据
     const getResourceData = (props) => {
         setLoad(1)
-        React.axios('post', 'http://106.13.18.48/monitor/api/resource/brr', setLoad, '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://39.98.41.126:31100/resource/brr', setLoad, '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 // setData(res)
                 // setTitle(Object.keys(res[0]));
@@ -47,7 +47,7 @@ export default function MyTable(props) {
     }
     const getJsData = () => {
         setLoad(1)
-        React.axios('post', 'http://106.13.18.48/monitor/api/jsError/urlErr', setLoad, '', { projectName: React.getCookie('monitorname') }
+        React.axios('post', 'http://39.98.41.126:31100/jsError/urlErr', setLoad, '', { projectName: React.getCookie('monitorname') }
         ).then(
             res => {
                 setData(res)
@@ -58,7 +58,7 @@ export default function MyTable(props) {
     }
     const getApiData = () => {
         setLoad(1)
-        React.axios('post', 'http://106.13.18.48/monitor/api/apiError/methodError', setLoad, '', { projectName: React.getCookie('monitorname') }
+        React.axios('post', 'http://39.98.41.126:31100/apiError/methodError', setLoad, '', { projectName: React.getCookie('monitorname') }
         ).then(
             res => {
                 setData(res)

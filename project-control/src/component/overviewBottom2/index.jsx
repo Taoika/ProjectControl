@@ -23,7 +23,7 @@ export default function Index() {
     }
     React.useEffect(() => {
         setLoad({ left: '20.2895vw', top: '10.75vw' })
-        React.axios('post', 'http://106.13.18.48/monitor/api/apiError/err', setLoad, '', { dateType: time.toString(), projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://39.98.41.126:31100/apiError/err', setLoad, '', { dateType: time.toString(), projectName: React.getCookie('monitorname') }).then(
             res => {
                 let data1 = [];
                 let data2 = [];
