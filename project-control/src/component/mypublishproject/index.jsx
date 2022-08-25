@@ -45,7 +45,7 @@ export default function Mypublishproject() {
                             projectname: i.projectName,
                             url: <a href={i.projectUrl}>{i.projectUrl}</a>,
                             desc: i.projectDesc,
-                            status: <span><Badge status={i.status ? "success" : 'default'} />{i.status ? "已通过" : '待审核'}</span>,
+                            status: <span><Badge status={i.status === 1 ? "success" : i.status === 2 ? 'error' : 'default'} />{i.status === 1 ? "已通过" : i.status === 2 ? '已拒绝' : '待审核'}</span>,
                             action: i.status ? <div className='Mypublishproject-btn'>
                                 <button onClick={() => gomonitor(i.projectName)} className='Mypublishproject-agree'>进入监控</button>
                                 <button onClick={() => gomanage(i.projectId, i.projectName, i.projectUrl, i.projectDesc)} className='Mypublishproject-refuse'>进入管理</button>
