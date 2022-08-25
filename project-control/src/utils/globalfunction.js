@@ -47,7 +47,8 @@ React.getCookie=(cookieName) =>{
         responseType:blob?'blob':'json'  //或者是blob
       })
       .then(
-        response=>{          if(typeof setLoad ==='function'){
+        response=>{
+          if(typeof setLoad ==='function'){
             setLoad(0);
           }      
           if(200===response.data.code||!response.data.code){

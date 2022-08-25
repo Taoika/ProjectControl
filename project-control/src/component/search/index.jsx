@@ -2,6 +2,7 @@ import React from 'react'
 import './index.css'
 import searchIcon from '../../assets/images/search.png'
 import Loading from '../loading'
+import {start} from 'furikurix'
 
 export default function Index(props) {
     const [load, setLoad] = React.useState(0)

@@ -12,7 +12,7 @@ export default function Overview() {
 
   return (
     <div className='overview'>
-        <strong className='overview-title'>项目名称</strong>
+        <strong className='overview-title'>{React.getCookie('monitorname')}</strong>
         <div className='overview-top'>
           <OverviewTopLeft />
           <OverviewTopMid />
