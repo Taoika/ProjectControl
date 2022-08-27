@@ -149,11 +149,13 @@ export default function LogPack() {
 
   // 详情信息
   function handleDetail(i) {
+    document.cookie = `monitorProjectUrl=www.monitorServer.com`
     navigate('/logdetail', { state: i });
   }
 
   useEffect(() => {
     getData();
+    document.cookie = `monitorname=jiao`
   }, [])
 
   return (

@@ -16,7 +16,7 @@ export default function ProjectMonitoring() {
     const freezeProject = (id) => {
         setFreeze({ show: 1, id })
     }
-    const gomonitor = (name) => {
+    const gomonitor = (name,url) => {
         document.cookie = `monitorname=${name}`
         navigate('/monitor')
     }
@@ -62,7 +62,7 @@ export default function ProjectMonitoring() {
                                     <span className="projectMonitoring-API">{i.rate ? 'API成功率: ' + i.rate + '' : ''}</span>
                                 </div>
                                 <div className="projectMonitoring-button">
-                                    <button onClick={() => gomonitor(i.projectName)} className="projectMonitoring-enter">进入监控</button>
+                                    <button onClick={() => gomonitor(i.projectName,i.projectUrl)} className="projectMonitoring-enter">进入监控</button>
                                     {i.status === 1 ? <button onClick={() => freezeProject(i.projectId)} className="projectMonitoring-freeze">冻结项目</button> : ''}
                                 </div>
                             </Badge.Ribbon>)

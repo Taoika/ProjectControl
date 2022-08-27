@@ -5,7 +5,6 @@ export default function Index() {
     React.useEffect(() => {
         React.axios('post', 'http://39.98.41.126:31100/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
-                console.log(res);
                 setData(res)
             },
         )

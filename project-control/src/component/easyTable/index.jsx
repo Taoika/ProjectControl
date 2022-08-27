@@ -1,5 +1,6 @@
 import { Table } from 'antd';
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
 
 // 封装了但没完全封装的Table
 // pageSize可选 默认为10 url必选
@@ -19,6 +20,13 @@ export default function MyTable(props) {
     const [columns, setColumns] = React.useState([]);
     //加载中
     const [load, setLoad] = React.useState(false)
+    const navigate = useNavigate();
+
+    // 详情信息
+    function handleDetail(x) {
+        navigate('/logdetail', { state: {uri:x.uri}});
+    }
+
     // 请求数据
     const getResourceData = (props) => {
         setLoad(1)
@@ -45,6 +53,7 @@ export default function MyTable(props) {
             }
         )
     }
+
     const getJsData = () => {
         setLoad(1)
         React.axios('post', 'http://39.98.41.126:31100/jsError/urlErr', setLoad, '', { projectName: React.getCookie('monitorname') }
@@ -52,21 +61,24 @@ export default function MyTable(props) {
             res => {
                 setData(res)
                 setTitle(Object.keys(res[0]));
-
             },
         )
     }
+
     const getApiData = () => {
         setLoad(1)
         React.axios('post', 'http://39.98.41.126:31100/apiError/methodError', setLoad, '', { projectName: React.getCookie('monitorname') }
         ).then(
-            res => {
+            res => {    
+                for(const x of res){
+                    x.more=<a onClick={()=>handleDetail(x)}>日志详情</a>
+                }
                 setData(res)
                 setTitle(Object.keys(res[0]));
-
             },
         )
     }
+
     React.useEffect(() => {
         props.type === 'js' ? getJsData() : props.type === 'resource' ? getResourceData() : getApiData()
     }, [props]);
@@ -77,18 +89,18 @@ export default function MyTable(props) {
     // 设置列配置
     React.useEffect(() => {
         // 列描述数据对象
-        setColumns(
-            title.map((i) => {
-                return {
-                    // 列头显示文字
-                    title: i === 'url' ? '页面' : i === 'count' ? 'js错误数' : i === 'percent' ? 'js错误率(%)' : i === 'uri' ? '接口' : i === 'avgResponseTime' ? '平均响应时间(ms)' : i === 'rate' ? '失败率(%)' :i === 'method' ? '请求方法' : i,
-                    // 列数据对应的标识
-                    dataIndex: i,
-                    // 如果dataIndex不是唯一的 那么key就是必须的 唯一标识
-                    key: i,
-                    align: 'center',
-                }
-            }));
+        let col=title.map((i) => {
+            return {
+                // 列头显示文字
+                title: i === 'url' ? '页面' : i === 'count' ? 'js错误数' : i === 'percent' ? 'js错误率(%)' : i === 'uri' ? '接口' : i === 'avgResponseTime' ? '平均响应时间(ms)' : i === 'rate' ? '失败率(%)' :i === 'method' ? '请求方法' : i === 'more' ? '更多' :i,
+                // 列数据对应的标识
+                dataIndex: i,
+                // 如果dataIndex不是唯一的 那么key就是必须的 唯一标识
+                key: i,
+                align: 'center',
+            }
+        })
+        setColumns(col);
     }, [title])
 
 
