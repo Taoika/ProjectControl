@@ -45,8 +45,8 @@ export default function Index() {
                         },
                     )
                 })
-                setCountData(data1)
-                setTransformData(data2)
+                setCountData(data1.reverse())
+                setTransformData(data2.reverse())
             },
         )
     }, [time])

@@ -37,7 +37,7 @@ export default function Index() {
                             <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.jsCountIncreRate ? data.jsCountIncreRate + '%' : '--%↑'}</strong></span>
                         </div>
                     </div>
-                    <div style={{ width: '20vw',fontSize:'1vw' }}>新增错误数&nbsp;<span className='red'>{data.jsCountIncre ? data.jsCountIncre : 0}</span></div>
+                    <div style={{ width: '20vw', fontSize: '1vw' }}>新增错误数&nbsp;<span className='red'>{data.jsCountIncre ? data.jsCountIncre : 0}</span></div>
                 </div>
                 <div className='overview-top-left1'>
                     <div className='overview-top-left1-top'>
@@ -52,7 +52,7 @@ export default function Index() {
                             <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.apiCountIncreRate ? data.apiCountIncreRate + '%' : '--%↑'}</strong></span>
                         </div>
                     </div>
-                    <div style={{ width: '20vw',fontSize:'1vw'  }}>新增错误数&nbsp;<span className='red'>{data.apiCountIncre ? data.apiCountIncre : 0}</span></div>
+                    <div style={{ width: '20vw', fontSize: '1vw' }}>新增错误数&nbsp;<span className='red'>{data.apiCountIncre ? data.apiCountIncre : 0}</span></div>
                 </div>
             </div>
         </>

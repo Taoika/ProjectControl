@@ -22,7 +22,7 @@ const DemoArea = (props) => {
                 }
 
             })
-            setData(data1)
+            setData(data1.reverse())
         }
     }, [props])
     const config = {

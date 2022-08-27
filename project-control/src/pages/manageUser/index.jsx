@@ -156,36 +156,36 @@ export default function ManageUser(props) {
     return (
         <>
             {freeze.show === 1 ? <Freeze setFreeze={setFreeze} id={freeze.id} type={'user'} getData={getData} /> : ''}
-        <div className='manageUser'> <div style={{ display: 'flex', marginBottom: '20px', width: '100%', justifyContent: 'space-between' }}><strong style={{ display: 'flex', width: '50%' }} className='manageUser-title'>用户管理</strong>
-            <div style={{ display: 'flex' }}><Search type='user' func={handleData} /></div></div>
-            {/* 默认是可以换行显示的 还行 */}
-            {load2 ? <Loading {...load2} /> : ''}
-            <Table
-                // 列的配置项
-                // expandable={{
+            <div className='manageUser'> <div style={{ display: 'flex', marginBottom: '20px', width: '100%', justifyContent: 'space-between' }}><strong style={{ display: 'flex', width: '50%' }} className='manageUser-title'>用户管理</strong>
+                <div style={{ display: 'flex' }}><Search type='user' func={handleData} /></div></div>
+                {/* 默认是可以换行显示的 还行 */}
+                {load2 ? <Loading {...load2} /> : ''}
+                <Table
+                    // 列的配置项
+                    // expandable={{
 
-                //     defaultExpandedRowKeys: ['0'],
+                    //     defaultExpandedRowKeys: ['0'],
+                    // }}
+                    expandable={{
+                        expandedRowRender: (record) => expandedRowRender(record),
+                        onExpand: (expanded, record) => getExpandData(expanded, record)
+                    }}
+                    // expandedRowRender
+                    defaultPageSize={10}
+                    columns={columns}
+                    loading={load ? true : false}
+                    // 数据数组
+                    dataSource={data}
+                    // 分页设置
+                    pagination={false}
+                // pagination={{
+                //     defaultPageSize: 10,
+                //     total: total,
+                //     onChange: handleChange,
+                //     showQuickJumper: true,
                 // }}
-                expandable={{
-                    expandedRowRender: (record) => expandedRowRender(record),
-                    onExpand: (expanded, record) => getExpandData(expanded, record)
-                }}
-                // expandedRowRender
-                defaultPageSize={10}
-                columns={columns}
-                loading={load ? true : false}
-                // 数据数组
-                dataSource={data}
-                // 分页设置
-                pagination={false}
-            // pagination={{
-            //     defaultPageSize: 10,
-            //     total: total,
-            //     onChange: handleChange,
-            //     showQuickJumper: true,
-            // }}
-            />
-        </div>
+                />
+            </div>
         </>
     );
 }

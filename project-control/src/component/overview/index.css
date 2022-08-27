@@ -10,23 +10,6 @@
 }
 
 
-.overview::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-/* 设置滚动条的轨道 */
-.overview::-webkit-scrollbar-track {
-    background: #b3b9bc;
-    border-radius: 2px;
-}
-
-/* 设置滚动条里面的小方块 */
-.overview::-webkit-scrollbar-thumb {
-    background: skyblue;
-    border-radius: 10px;
-
-}
 .overview {
     font-size: 1vw;
 }

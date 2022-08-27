@@ -66,7 +66,7 @@ export default function Freeze(props) {
               }
             ]}
           >
-            <Input style={{width:'200px'}}/>
+            <Input style={{ width: '200px' }} />
           </Form.Item>
           <Form.Item
             wrapperCol={{

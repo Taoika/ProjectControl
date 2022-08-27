@@ -64,7 +64,7 @@ export default function MyDrawer() {
             <Badge count='!' onClick={showDrawer}></Badge>
             <Drawer title={<div ><i onClick={() => pageChange(1)} className='drawerChange'>消息列表 </i> &nbsp;<i onClick={() => pageChange(0)} className='drawerChange'>我的请求</i></div>} placement="right" onClose={onClose} visible={visible}>
                 {load ? <Loading {...load} /> : ''}
-                {page ? data.length!==0? data.map(i => {
+                {page ? data.length !== 0 ? data.map(i => {
                     if (i.status === 1) {
                         return (
                             <div key={i.appliId} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderBottom: '1px solid rgba(0,0,0,.1)', }}>
@@ -76,7 +76,7 @@ export default function MyDrawer() {
                                     &nbsp;&nbsp;&nbsp;   <i onClick={() => agreeOrrefuse('-1', i.appliId)} style={{ width: '30px', color: 'rgb(93, 177, 255)', cursor: 'pointer' }}>拒绝</i></div>
                             </div>)
                     }
-                }):<p>没有数据</p> :data2.length!==0? data2.map(i => {
+                }) : <p>没有数据</p> : data2.length !== 0 ? data2.map(i => {
                     return (<div key={i.applicationId} style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', width: '100%', borderBottom: '1px solid rgba(0,0,0,.1)', }}>
                         <div style={{ display: 'flex', height: '100%', width: '50%' }}>
                             <i >{i.type !== 2 ? '项目名:  ' + i.projectName : '用户名:  ' + i.userName}</i>
@@ -88,7 +88,7 @@ export default function MyDrawer() {
                         <div style={{ display: 'flex', width: '50px' }}><i onClick={() => readed(i.applicationId)} style={{ width: '30px', cursor: 'pointer' }}>&nbsp;&nbsp;&nbsp;X</i>
                         </div>
                     </div>)
-                }):<p>没有数据</p>}
+                }) : <p>没有数据</p>}
                 <Drawer
                     title="项目详情"
                     width={320}

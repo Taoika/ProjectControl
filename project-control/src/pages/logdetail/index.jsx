@@ -10,7 +10,7 @@ export default function LogDetail() {
 
 
     useEffect(() => {
-        React.axios('post', 'http://39.98.41.126:31100/apiError/detail', '', '', { method: uri, projectUrl: 'www.monitorServer.com' })
+        React.axios('post', 'http://39.98.41.126:31100/apiError/detail', '', '', { currentPage: '1', method: uri, projectName: 'Jiao' })
             .then(res => {
                 if (res) {
                     let data = []

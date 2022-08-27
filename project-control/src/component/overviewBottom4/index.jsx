@@ -23,7 +23,7 @@ export default function Index() {
         setLoad({ left: '17.2895vw', top: '10.75vw' })
         React.axios('post', 'http://39.98.41.126:31100/resource/err', setLoad, '', { type: type.toString(), dateType: dateType.toString(), projectName: React.getCookie('monitorname') }).then(
             res => {
-                setData(res)
+                setData(res.reverse())
             },
         )
     }, [type, dateType])
