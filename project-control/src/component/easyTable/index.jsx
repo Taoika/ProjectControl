@@ -60,7 +60,12 @@ export default function MyTable(props) {
         ).then(
             res => {
                 setData(res)
+<<<<<<< HEAD
                 setTitle(Object.keys(res[0]));
+=======
+                setTitle(Object.keys(res[0]).reverse());
+
+>>>>>>> fa0838864cc4bc9157568b4dabcf240740121130
             },
         )
     }
@@ -74,7 +79,12 @@ export default function MyTable(props) {
                     x.more=<a onClick={()=>handleDetail(x)}>日志详情</a>
                 }
                 setData(res)
+<<<<<<< HEAD
                 setTitle(Object.keys(res[0]));
+=======
+                setTitle(Object.keys(res[0]).reverse());
+
+>>>>>>> fa0838864cc4bc9157568b4dabcf240740121130
             },
         )
     }
@@ -89,6 +99,7 @@ export default function MyTable(props) {
     // 设置列配置
     React.useEffect(() => {
         // 列描述数据对象
+<<<<<<< HEAD
         let col=title.map((i) => {
             return {
                 // 列头显示文字
@@ -101,6 +112,20 @@ export default function MyTable(props) {
             }
         })
         setColumns(col);
+=======
+        setColumns(
+            title.map((i) => {
+                return {
+                    // 列头显示文字
+                    title: i === 'url' ? '页面' : i === 'count' ? 'js错误数' : i === 'percent' ? 'js错误率(%)' : i === 'uri' ? '接口' : i === 'avgResponseTime' ? '平均响应时间(ms)' : i === 'rate' ? '失败率(%)' : i === 'method' ? '请求方法' : i,
+                    // 列数据对应的标识
+                    dataIndex: i,
+                    // 如果dataIndex不是唯一的 那么key就是必须的 唯一标识
+                    key: i,
+                    align: 'center',
+                }
+            }));
+>>>>>>> fa0838864cc4bc9157568b4dabcf240740121130
     }, [title])
 
 
