@@ -19,12 +19,12 @@ export default function Managepower() {
     // const [title,setTitle]=React.useState([]);
     const cancelpower = (userId) => {
         setLoad(1)
-        React.axios('post', 'http://39.98.41.126:31100/userproject/updatePermission', setLoad, '',
+        React.axios('post', 'http://39.98.41.126:31106/userproject/updatePermission', setLoad, '',
             { userId, projectName: React.getCookie('managename') }, '', '', getData)
     }
     const getData = () => {
         setLoad(1)
-        React.axios('post', 'http://39.98.41.126:31100/userproject/viewPermission', setLoad, '',
+        React.axios('post', 'http://39.98.41.126:31106/userproject/viewPermission', setLoad, '',
             { projectName: React.getCookie('managename') }).then(res => {
                 let data = [];
                 res.map(i => {

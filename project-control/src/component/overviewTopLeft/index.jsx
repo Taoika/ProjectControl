@@ -3,9 +3,8 @@ import React from 'react'
 export default function Index() {
     const [data, setData] = React.useState({})
     React.useEffect(() => {
-        React.axios('post', 'http://39.98.41.126:31100/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://39.98.41.126:31106/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
-                console.log(res);
                 setData(res)
             },
         )
@@ -29,12 +28,12 @@ export default function Index() {
                         <div>
                             <strong className='overview-top-left1-top-value'>{data.jsThisWeekCount ? data.jsThisWeekCount : '--'}</strong>
                             <span>JS错误数</span>
-                            <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.jsCountIncreRate ? data.jsCountIncreRate + '%' : '--%↑'}</strong></span>
+                            <span>周增长率:&nbsp;<strong className='red'>{data.jsCountIncreRate ? data.jsCountIncreRate + '%' : '--%↑'}</strong></span>
                         </div>
                         <div>
                             <strong className='overview-top-left1-top-value'>{data.JsThisWeekDefeatRate ? data.JsThisWeekDefeatRate + '%' : '--%'}</strong>
                             <span>JS错误率</span>
-                            <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.jsCountIncreRate ? data.jsCountIncreRate + '%' : '--%↑'}</strong></span>
+                            <span>周增长率:&nbsp;<strong className='red'>{data.jsCountIncreRate ? data.jsCountIncreRate + '%' : '--%↑'}</strong></span>
                         </div>
                     </div>
                     <div style={{ width: '20vw', fontSize: '1vw' }}>新增错误数&nbsp;<span className='red'>{data.jsCountIncre ? data.jsCountIncre : 0}</span></div>
@@ -44,12 +43,12 @@ export default function Index() {
                         <div>
                             <strong className='overview-top-left1-top-value'>{data.apiThisWeekCount ? data.apiThisWeekCount : '--'}</strong>
                             <span>API错误数</span>
-                            <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.apiCountIncreRate ? data.apiCountIncreRate + '%' : '--%↑'}</strong></span>
+                            <span>周增长率:&nbsp;<strong className='red'>{data.apiCountIncreRate ? data.apiCountIncreRate + '%' : '--%↑'}</strong></span>
                         </div>
                         <div>
                             <strong className='overview-top-left1-top-value'>{data.ApiThisWeekDefeatRate ? data.ApiThisWeekDefeatRate + '%' : '--%'}</strong>
                             <span>API错误率</span>
-                            <span>周增长率:&nbsp;&nbsp;&nbsp; <strong className='red'>{data.apiCountIncreRate ? data.apiCountIncreRate + '%' : '--%↑'}</strong></span>
+                            <span>周增长率:&nbsp;<strong className='red'>{data.apiCountIncreRate ? data.apiCountIncreRate + '%' : '--%↑'}</strong></span>
                         </div>
                     </div>
                     <div style={{ width: '20vw', fontSize: '1vw' }}>新增错误数&nbsp;<span className='red'>{data.apiCountIncre ? data.apiCountIncre : 0}</span></div>

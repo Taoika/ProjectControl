@@ -16,13 +16,13 @@ export default function ProjectMonitoring() {
     const freezeProject = (id) => {
         setFreeze({ show: 1, id })
     }
-    const gomonitor = (name) => {
+    const gomonitor = (name, url) => {
         document.cookie = `monitorname=${name}`
         navigate('/monitor')
     }
     const getData = () => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('get', 'http://39.98.41.126:31100/project/allProject', setLoad, '', '', '', setError).then(res => {
+        React.axios('get', 'http://39.98.41.126:31106/project/allProject', setLoad, '', '', '', setError).then(res => {
             setData(res)
         })
     }

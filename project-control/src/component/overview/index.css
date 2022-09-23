@@ -85,14 +85,14 @@
 }
 
 .monitorMask {
-    transition: all .1s;
+    transition: all .3s;
 }
 
 .overview-top-mid,
 .overview-top-left,
 .overview-top-right,
 .overview-bottom>div {
-    transition: all .1s;
+    transition: all .3s;
 
 }
 

@@ -2,21 +2,21 @@ import React from 'react'
 import './index.css'
 import searchIcon from '../../assets/images/search.png'
 import Loading from '../loading'
-// import {start} from 'furikurix'
 
 export default function Index(props) {
     const [load, setLoad] = React.useState(0)
     const myRef = React.useRef();
     const search = () => {
-        setLoad({ left: '-30vw', top: '0vw' })
         if (props.type === 'project') {
-            React.axios('post', 'http://39.98.41.126:31100/project/getByCondition', setLoad, '',
+            setLoad({ left: '-30vw', top: '0vw' })
+            React.axios('post', 'http://39.98.41.126:31106/project/getByCondition', setLoad, '',
                 { projectName: myRef.current.value }).then(res => {
                     props.func(res)
                 })
         }
         if (props.type === 'user') {
-            React.axios('post', 'http://39.98.41.126:31100/user/getUser', setLoad, '',
+            setLoad({ left: '-30vw', top: '5vw' })
+            React.axios('post', 'http://39.98.41.126:31106/user/getUser', setLoad, '',
                 { username: myRef.current.value }).then(res => props.func(res))
         }
 

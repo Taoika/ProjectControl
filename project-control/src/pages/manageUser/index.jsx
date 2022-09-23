@@ -64,7 +64,7 @@ export default function ManageUser(props) {
         if (flag) {
             setLoad2({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://39.98.41.126:31100/user/forceLogout', setLoad2, setFlag, { userId: id }).then(
+            React.axios('post', 'http://39.98.41.126:31106/user/forceLogout', setLoad2, setFlag, { userId: id }).then(
                 getData()
             )
         }
@@ -87,7 +87,7 @@ export default function ManageUser(props) {
     // 请求数据
     const getData = () => {
         setLoad(1)
-        React.axios('get', 'http://39.98.41.126:31100/user/getAllUser', setLoad,
+        React.axios('get', 'http://39.98.41.126:31106/user/getAllUser', setLoad,
         ).then(
             res => {
                 handleData(res)
@@ -138,7 +138,7 @@ export default function ManageUser(props) {
     const getExpandData = (expanded, record) => {
         if (expanded && expandeddata[record.key] === undefined) {
             setLoad1({ left: '47.2895vw', top: '5.75vw' })
-            React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad1, '',
+            React.axios('post', 'http://39.98.41.126:31106/userproject/MyProject', setLoad1, '',
                 { userId: record.key }).then(res => {
                     expandeddata[record.key] = res.map(i => {
                         return ({

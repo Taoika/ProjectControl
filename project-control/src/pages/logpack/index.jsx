@@ -55,7 +55,7 @@ export default function LogPack() {
   // 请求数据
   const getData = () => {
     setLoad({ left: '47.2895vw', top: '5.75vw' })
-    React.axios('get', 'http://39.98.41.126:31100/apiError/serverPackage', setLoad, '')
+    React.axios('get', 'http://39.98.41.126:31106/apiError/serverPackage', setLoad, '')
       .then(res => {
         let data = [];
         res.map(i => {
@@ -127,7 +127,7 @@ export default function LogPack() {
   const getExpandData = (expanded, record) => {
     if (expanded && expandeddata[record.packageName] === undefined) {
       setLoad1({ left: '47.2895vw', top: '5.75vw' });
-      React.axios('post', 'http://39.98.41.126:31100/apiError/serverMethod', setLoad1, '', { packageName: record.packageName })
+      React.axios('post', 'http://39.98.41.126:31106/apiError/serverMethod', setLoad1, '', { packageName: record.packageName })
         .then(res => {
           expandeddata[record.packageName] = res.map(i => {
             return ({
@@ -149,11 +149,13 @@ export default function LogPack() {
 
   // 详情信息
   function handleDetail(i) {
+    document.cookie = `monitorProjectUrl=www.monitorServer.com`
     navigate('/logdetail', { state: i });
   }
 
   useEffect(() => {
     getData();
+    document.cookie = `monitorname=jiao`
   }, [])
 
   return (
