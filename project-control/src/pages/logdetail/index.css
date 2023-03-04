@@ -1,7 +1,13 @@
 .logDetail-container {
+    display: flex;
+    justify-content: center;
     padding: 20px 20px;
     width: 100%;
     height: calc(100vh - 64px);
+}
+
+.logDetail {
+    width: 90%;
 }
 
 .logDetail-title {
@@ -17,10 +23,11 @@
 
 .logDetail-content {
     height: 100%;
-    padding: 20px;
+    border-radius: 10px;
     font-size: 16px;
     background-color: #fff;
     overflow: auto;
+    border: 1px solid rgba(0,0,0,.1);
 }
 
 .logDetail-content p {
@@ -28,4 +35,12 @@
     justify-content: start;
     flex-wrap: wrap;
     width: 100%;
+    padding: 0 20px;
+}
+
+.logDetail-content .logDetail-content-title {
+    display: flex;
+    justify-content: space-between;
+    padding:20px 20px 20px 20px;
+    border-bottom: 1px solid rgba(0,0,0,.1);
 }

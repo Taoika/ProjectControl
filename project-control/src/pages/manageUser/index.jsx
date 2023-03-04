@@ -64,7 +64,7 @@ export default function ManageUser(props) {
         if (flag) {
             setLoad2({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://39.98.41.126:31100/user/forceLogout', setLoad2, setFlag, { userId: id }).then(
+            React.axios('post', 'http://106.13.18.48/monitor/api/user/forceLogout', setLoad2, setFlag, { userId: id }).then(
                 getData()
             )
         }
@@ -87,7 +87,7 @@ export default function ManageUser(props) {
     // 请求数据
     const getData = () => {
         setLoad(1)
-        React.axios('get', 'http://39.98.41.126:31100/user/getAllUser', setLoad,
+        React.axios('get', 'http://106.13.18.48/monitor/api/user/getAllUser', setLoad,
         ).then(
             res => {
                 handleData(res)
@@ -138,7 +138,7 @@ export default function ManageUser(props) {
     const getExpandData = (expanded, record) => {
         if (expanded && expandeddata[record.key] === undefined) {
             setLoad1({ left: '47.2895vw', top: '5.75vw' })
-            React.axios('post', 'http://39.98.41.126:31100/userproject/MyProject', setLoad1, '',
+            React.axios('post', 'http://106.13.18.48/monitor/api/userproject/MyProject', setLoad1, '',
                 { userId: record.key }).then(res => {
                     expandeddata[record.key] = res.map(i => {
                         return ({
@@ -156,36 +156,28 @@ export default function ManageUser(props) {
     return (
         <>
             {freeze.show === 1 ? <Freeze setFreeze={setFreeze} id={freeze.id} type={'user'} getData={getData} /> : ''}
-        <div className='manageUser'> <div style={{ display: 'flex', marginBottom: '20px', width: '100%', justifyContent: 'space-between' }}><strong style={{ display: 'flex', width: '50%' }} className='manageUser-title'>用户管理</strong>
-            <div style={{ display: 'flex' }}><Search type='user' func={handleData} /></div></div>
-            {/* 默认是可以换行显示的 还行 */}
-            {load2 ? <Loading {...load2} /> : ''}
-            <Table
-                // 列的配置项
-                // expandable={{
-
-                //     defaultExpandedRowKeys: ['0'],
-                // }}
-                expandable={{
-                    expandedRowRender: (record) => expandedRowRender(record),
-                    onExpand: (expanded, record) => getExpandData(expanded, record)
-                }}
-                // expandedRowRender
-                defaultPageSize={10}
-                columns={columns}
-                loading={load ? true : false}
-                // 数据数组
-                dataSource={data}
-                // 分页设置
-                pagination={false}
-            // pagination={{
-            //     defaultPageSize: 10,
-            //     total: total,
-            //     onChange: handleChange,
-            //     showQuickJumper: true,
-            // }}
-            />
-        </div>
+            <div className='manageUser'>
+                <div style={{ display: 'flex', marginBottom: '20px', width: '100%', justifyContent: 'space-between' }}>
+                    <strong style={{ display: 'flex', width: '50%' }} className='manageUser-title'>用户管理</strong>
+                    <div style={{ display: 'flex' }}><Search type='user' func={handleData} /></div>
+                </div>
+                {/* 默认是可以换行显示的 还行 */}
+                {load2 ? <Loading {...load2} /> : ''}
+                <Table
+                    expandable={{
+                        expandedRowRender: (record) => expandedRowRender(record),
+                        onExpand: (expanded, record) => getExpandData(expanded, record)
+                    }}
+                    // expandedRowRender
+                    defaultPageSize={10}
+                    columns={columns}
+                    loading={load ? true : false}
+                    // 数据数组
+                    dataSource={data}
+                    // 分页设置
+                    pagination={false}
+                />
+            </div>
         </>
     );
 }

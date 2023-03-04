@@ -1,7 +1,13 @@
 .logPack-container {
+    display: flex;
+    justify-content: center;
     padding: 20px 20px;
     width: 100%;
     height: calc(100vh - 64px);
+}
+
+.logPack {
+    width: 90%;
 }
 
 .logPack-title {
@@ -11,6 +17,6 @@
 }
 
 .logPack-title-left {
-    font-size: 16px;
+    font-size: 24px;
     font-weight: 700;
 }

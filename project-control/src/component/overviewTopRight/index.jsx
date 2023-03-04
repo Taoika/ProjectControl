@@ -5,13 +5,13 @@ export default function Index() {
     const [mask, setMask] = React.useState(0)
     let [data, setData] = React.useState({})
     React.useEffect(() => {
-        React.axios('post', 'http://39.98.41.126:31100/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/api/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 data = { ...data, ...res }
                 setData(data)
             },
         )
-        React.axios('post', 'http://39.98.41.126:31100/performance/FP ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/api/performance/FP ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 data = { ...data, ...res }
                 setData(data)

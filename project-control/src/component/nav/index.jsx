@@ -8,10 +8,12 @@ import logo from '../../assets/images/projectcontrol.png'
 
 export default function Nav(props) {
 
+    console.log(props);
+
     const navigate = useNavigate();
     const { Header } = Layout;
     const logout = () => {
-        React.axios('get', 'http://39.98.41.126:31100/user/logout')
+        React.axios('get', 'http://106.13.18.48/monitor/api/user/logout')
         navigate('/dlzc')
         document.cookie.split(';').forEach(cookie => document.cookie = cookie.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`));
         if(React.getCookie('user')){
@@ -63,12 +65,12 @@ export default function Nav(props) {
 
     return (
         <div className='head'>
+            <div className="head-logo" onClick={handleClick}>
+                <img src={logo} alt="项目管控平台" />
+                <span>项目管控平台</span>
+            </div>
             <Header className="head-header" >
-                <div style={{ overflow: 'hidden', whiteSpace: 'nowrap', textOverflow: 'ellipsis' }} className="head-logo" onClick={handleClick}>
-                    <img src={logo} alt="项目管控平台" />
-                    项目管控平台
-                </div>
-                <Menu style={{ displat: 'flex', justifyContent: 'flex-end', width: '80%' }} mode="horizontal" defaultSelectedKeys={[defaultSelectedKeys]} items={items} />
+                <Menu className='head-menu' mode="horizontal" defaultSelectedKeys={[defaultSelectedKeys]} items={items} />
             </Header >
             <Outlet />
         </div >

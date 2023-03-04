@@ -2,18 +2,17 @@
 
 .head {
     position: fixed;
-    top: 0;
-    width: 100%;
-}
-
-.head-header {
     display: flex;
     justify-content: space-between;
-    padding:0 10px 0 0;
+    top: 0;
+    width: 100%;
     background-color: #fff;
 }
 
 .head-logo {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
     font-size: 24px;
     font-weight: 700;
     color: #333333;
@@ -28,6 +27,48 @@
     height: 50px;
 }
 
+.head-header {
+    width: 600px;
+}
+
 .head-menu {
-    width: 100%;
+    display: flex;
+    justify-content: end;
+}
+
+.head .ant-layout-header {
+    padding: 0;
+    background-color: #fff;
+}
+
+@media screen and (max-width:820px) and (min-width:551px) {
+    
+    .head-header {
+        width: 330px;
+    }
+}
+
+@media screen and (max-width:550px) and (min-width:451px) {
+
+    .head-header {
+        width: 240px;
+    }
+}
+
+@media screen and (max-width:450px) and (min-width:351px){
+
+    .head-header {
+        width: 130px;
+    }
+}
+
+@media screen and (max-width:350px){
+
+    .head-header {
+        width: 130px;
+    }
+
+    .head-logo span {
+        display: none;
+    }
 }

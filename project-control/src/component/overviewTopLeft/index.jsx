@@ -3,7 +3,7 @@ import React from 'react'
 export default function Index() {
     const [data, setData] = React.useState({})
     React.useEffect(() => {
-        React.axios('post', 'http://39.98.41.126:31100/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://106.13.18.48/monitor/api/SDK/whole ', '', '', { projectName: React.getCookie('monitorname') }).then(
             res => {
                 setData(res)
             },
