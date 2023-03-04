@@ -25,29 +25,31 @@ React.getCookie=(cookieName) =>{
     return new Promise((resolve,reject)=>{
 
       // //公钥
-      const PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDI3hf95L3aMonXCgG926Gt6nwft8RnhM+6UHVieE4N58V0swNvFVU4XRrlNn4o2vU8eZ5z1c8s2AHEl65ck5kiAPjC82nCgWd4j1sdr2Wvz18B+/DT4PLZum4QzwIAviQfafp1qVbC6fYj0BLyDXmeaO5gi3X19U0kIhUPWbzAqQIDAQAB';
+      // const PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDI3hf95L3aMonXCgG926Gt6nwft8RnhM+6UHVieE4N58V0swNvFVU4XRrlNn4o2vU8eZ5z1c8s2AHEl65ck5kiAPjC82nCgWd4j1sdr2Wvz18B+/DT4PLZum4QzwIAviQfafp1qVbC6fYj0BLyDXmeaO5gi3X19U0kIhUPWbzAqQIDAQAB';
       // AES秘钥
-      let AESKey=initKey(16);
+      // let AESKey=initKey(16);
       axios({
         headers: {
           'Content-Type': 'application/json',
-          'Authorization': React.getCookie('header'),
+          // 'Authorization': React.getCookie('header'),
           // 'Access-Control-Expose-Headers':'Authorization'
         },
         method:type.toUpperCase(),
         url,
         // data:nojson?data:JSON.stringify(data),
-        data:Object.prototype.toString.call(data)==='[Object FormDta]'?data:JSON.stringify({
-          // 密钥
-          encryptKey:encryptRSA(PUBLIC_KEY,AESKey),
-          // 密文
-          encryptStr:encryptAES(AESKey,JSON.stringify(data)),
-        }),
-        params:params||'',
+        // data:Object.prototype.toString.call(data)==='[Object FormDta]'?data:JSON.stringify({
+        //   // 密钥
+        //   encryptKey:encryptRSA(PUBLIC_KEY,AESKey),
+        //   // 密文
+        //   encryptStr:encryptAES(AESKey,JSON.stringify(data)),
+        // }),
+        data: JSON.stringify(data),
+        params:JSON.stringify(params)||'',
         responseType:blob?'blob':'json'  //或者是blob
       })
       .then(
         response=>{
+          console.log(response);
           if(typeof setLoad ==='function'){
             setLoad(0);
           }      
@@ -76,8 +78,8 @@ React.getCookie=(cookieName) =>{
             }
             //返回数据
             if(response.data.data){
-              AESKey=type.toUpperCase()==='GET'?'Z6XB<$F9fA5jRT92':AESKey;
-              let data=JSON.parse( decryptAES(AESKey,response.data.data))
+              // AESKey=type.toUpperCase()==='GET'?'Z6XB<$F9fA5jRT92':AESKey;
+              // let data=JSON.parse( decryptAES(AESKey,response.data.data))
                 //判断是否设置cookie
                 if(response.headers.authorization){
                   document.cookie = `header=${response.headers.authorization}`;

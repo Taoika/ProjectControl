@@ -9,19 +9,18 @@ const Namel = () => {
     const navigate = useNavigate()
     //是否显示加载中
     const [load, setLoad] = React.useState()
+    const [post, setPost] = React.useState(1)
     //flag是阀门，不允许狂点按钮
     const [flag, setFlag] = React.useState(1)
     const onFinish = (values) => {
+        let { type, point, status, value } = values
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://39.98.41.126:31106/user/login', setLoad, setFlag,
-                { username: values.username, password: values.password }).then(
-                    res => {
-                        document.cookie = `username=${res.username}`;
-                        navigate('/userproject')
-                    },
-                )
+            post ? React.axios('post', `http://192.168.10.1/cgi-bin/main.cgi`, setLoad, setFlag, { type, point, status, value }
+            ) : React.axios('get', `http://192.168.10.1/cgi-bin/main.cgi?type=${type}&point=${point}&status=${status}&value=${value}`, setLoad, setFlag,
+            )
+
         }
     };
     return (
@@ -38,7 +37,7 @@ const Namel = () => {
             >
                 {/* 用户名 */}
                 <Form.Item
-                    name="username"
+                    name="type"
                     rules={[
                         {
                             required: true,
@@ -50,11 +49,11 @@ const Namel = () => {
                         }
                     ]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="type" />
                 </Form.Item>
                 {/* 密码 */}
                 <Form.Item
-                    name="password"
+                    name="point"
                     rules={[
                         {
                             required: true,
@@ -70,7 +69,7 @@ const Namel = () => {
                     <Input
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Password"
+                        placeholder="point"
                     />
                 </Form.Item>
                 <Form.Item>
@@ -84,6 +83,8 @@ const Namel = () => {
                     </Button>
 
                 </Form.Item>
+
+
             </Form>
         </div>
 
