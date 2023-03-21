@@ -8,22 +8,25 @@ import logo from '../../assets/images/projectcontrol.png'
 
 export default function Nav(props) {
 
-    console.log(props);
+    // console.log(props);
 
     const navigate = useNavigate();
     const { Header } = Layout;
     const logout = () => {
-        React.axios('get', 'http://106.13.18.48/monitor/api/user/logout')
+        React.axios('get', 'http://39.98.41.126:31113/user/logout')
         navigate('/dlzc')
         document.cookie.split(';').forEach(cookie => document.cookie = cookie.replace(/^ +/, '').replace(/=.*/, `=;expires=${new Date(0).toUTCString()};path=/`));
-        if(React.getCookie('user')){
+        if (React.getCookie('user')) {
             document.cookie = `user=`;
+            document.cookie = `username=`;
+            document.cookie = `header=`;
+            document.cookie = `permission=`
         }
     }
     // 点击logo
     function handleClick() {
-        if(React.getCookie('user')){
-            React.getCookie('user')==='root'? navigate('/manageproject'):navigate('userproject')
+        if (React.getCookie('user')) {
+            React.getCookie('user') === 'root' ? navigate('/manageproject') : navigate('userproject')
         }
     }
 

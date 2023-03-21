@@ -10,23 +10,6 @@
 }
 
 
-.overview::-webkit-scrollbar {
-    width: 10px;
-    height: 10px;
-}
-
-/* 设置滚动条的轨道 */
-.overview::-webkit-scrollbar-track {
-    background: #b3b9bc;
-    border-radius: 2px;
-}
-
-/* 设置滚动条里面的小方块 */
-.overview::-webkit-scrollbar-thumb {
-    background: skyblue;
-    border-radius: 10px;
-
-}
 .overview {
     font-size: 1vw;
 }
@@ -102,14 +85,14 @@
 }
 
 .monitorMask {
-    transition: all .1s;
+    transition: all .3s;
 }
 
 .overview-top-mid,
 .overview-top-left,
 .overview-top-right,
 .overview-bottom>div {
-    transition: all .1s;
+    transition: all .3s;
 
 }
 

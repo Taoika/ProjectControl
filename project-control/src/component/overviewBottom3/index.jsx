@@ -11,9 +11,9 @@ export default function Index() {
     const [load, setLoad] = React.useState(0)
     React.useEffect(() => {
         setLoad({ left: '17.2895vw', top: '10.75vw' })
-        React.axios('post', 'http://106.13.18.48/monitor/api/performance', setLoad, '', { dateType: dateType.toString(), type: time.toString(), projectName: React.getCookie('monitorname') }).then(
+        React.axios('post', 'http://39.98.41.126:31113/performance', setLoad, '', { dateType: dateType.toString(), type: time.toString(), projectName: React.getCookie('monitorname') }).then(
             res => {
-                setData(res)
+                setData(res.reverse())
             },
         )
     }, [time, dateType]);

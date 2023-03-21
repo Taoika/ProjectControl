@@ -6,30 +6,36 @@ import './index.css'
 export default function LogDetail() {
 
     const [detail, setDetail] = useState([]);
-    const [current,setCurrent]=useState(1);
-    const [total,setTotal]=useState(1);
+    const [current, setCurrent] = useState(1);
+    const [total, setTotal] = useState(1);
     const location = useLocation();
-    const uri = location.state?location.state.uri:'';
+    console.log('location ->', location);
+    const uri = location.state ? location.state.uri : '';
 
-    function requestDetail(){
-        React.axios('post', 'http://106.13.18.48/monitor/api/apiError/detail', '', '', { method: uri, projectName:React.getCookie('monitorname'), currentPage:current })
-        .then(res => {
-            if (res) {
-                setTotal(res[0].pageSize)
-                setDetail(res[0])
-            }
+    function requestDetail() {
+        React.axios('post', 'http://39.98.41.126:31113/apiError/detail', '', '', { method: uri, projectName: React.getCookie('monitorname'), currentPage: current })
+            .then(res => {
+                if (res) {
+                    console.log(res);
+                    let data = []
+                    for (const x in res[0]) {
+                        data.push({ key: x, value: res[0][x] });
+                    }
+                    setTotal(res[0].pageSize)
+                    setDetail(data)
+                }
 
-        })
+            })
     }
 
-    function handleChange(value){
+    function handleChange(value) {
         setCurrent(value);
     }
 
     useEffect(() => {
         requestDetail();
     }, [current]);
-    
+
     return (
         <div className="logDetail-container">
             <div className="logDetail">

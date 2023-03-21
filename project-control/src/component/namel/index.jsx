@@ -9,14 +9,16 @@ const Namel = () => {
     const navigate = useNavigate()
     //是否显示加载中
     const [load, setLoad] = React.useState()
+    const [post, setPost] = React.useState(1)
     //flag是阀门，不允许狂点按钮
     const [flag, setFlag] = React.useState(1)
     const onFinish = (values) => {
+        let { type, point, status, value } = values
         if (flag) {
             setLoad({ left: '47.2895vw', top: '5.75vw' })
             setFlag(0)
-            React.axios('post', 'http://106.13.18.48/monitor/api/user/login', setLoad, setFlag,
-                { username: values.username, password: values.password }).then(
+            React.axios('post', 'http://39.98.41.126:31113/user/login', setLoad, setFlag,
+                { username: values.type, password: values.point }).then(
                     res => {
                         document.cookie = `username=${res.username}`;
                         navigate('/userproject')
@@ -38,7 +40,7 @@ const Namel = () => {
             >
                 {/* 用户名 */}
                 <Form.Item
-                    name="username"
+                    name="type"
                     rules={[
                         {
                             required: true,
@@ -50,11 +52,11 @@ const Namel = () => {
                         }
                     ]}
                 >
-                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="Username" />
+                    <Input prefix={<UserOutlined className="site-form-item-icon" />} placeholder="type" />
                 </Form.Item>
                 {/* 密码 */}
                 <Form.Item
-                    name="password"
+                    name="point"
                     rules={[
                         {
                             required: true,
@@ -70,7 +72,7 @@ const Namel = () => {
                     <Input
                         prefix={<LockOutlined className="site-form-item-icon" />}
                         type="password"
-                        placeholder="Password"
+                        placeholder="point"
                     />
                 </Form.Item>
                 <Form.Item>
@@ -84,6 +86,8 @@ const Namel = () => {
                     </Button>
 
                 </Form.Item>
+
+
             </Form>
         </div>
 

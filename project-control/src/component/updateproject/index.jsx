@@ -25,7 +25,7 @@ export default function Updateproject() {
     if (flag) {
       setLoad({ left: '47.2895vw', top: '5.75vw' })
       setFlag(0)
-      React.axios('post', 'http://106.13.18.48/monitor/api/project/delete', setLoad, setFlag,
+      React.axios('post', 'http://39.98.41.126:31113/project/delete', setLoad, setFlag,
         { projectName: React.getCookie('managename') }).then()
     }
   };
@@ -52,7 +52,7 @@ export default function Updateproject() {
       setLoad({ left: '47.2895vw', top: '5.75vw' })
       setFlag(0)
       const { projectName, projectUrl, projectDesc } = values
-      React.axios('post', 'http://106.13.18.48/monitor/api/project/update', setLoad, setFlag,
+      React.axios('post', 'http://39.98.41.126:31113/project/update', setLoad, setFlag,
         { projectId: React.getCookie('manage'), projectName, projectUrl, projectDesc }).then()
     }
   };

@@ -13,9 +13,9 @@ export default function UserProject() {
     const [error, setError] = React.useState(0)
     const apply = (id) => {
         if (flag) {
-            setLoad({ left: '47.2895vw', top: '5.75vw' })
+            setLoad({ left: '47.2895vw', top: '10.75vw' })
             setFlag(0)
-            React.axios('post', 'http://106.13.18.48/monitor/api/application/releaseApp', setLoad, setFlag,
+            React.axios('post', 'http://39.98.41.126:31113/application/releaseApp', setLoad, setFlag,
                 { projectId: id, number: '1' })
         }
     }
@@ -29,8 +29,8 @@ export default function UserProject() {
         //         parent.children[i].style.marginRight = (len / Math.floor(len / 402) - 350) / 2 + 'px'
         //     }
         // })
-        setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('get', 'http://106.13.18.48/monitor/api/project/allProject', setLoad, '', '', '', setError).then(res => {
+        setLoad({ left: '47.2895vw', top: '10.75vw' })
+        React.axios('get', 'http://39.98.41.126:31113/project/allProject', setLoad, '', '', '', setError).then(res => {
             setData(res)
         })
 

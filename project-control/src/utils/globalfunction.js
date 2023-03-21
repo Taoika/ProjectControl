@@ -24,7 +24,7 @@ React.getCookie=(cookieName) =>{
 
     return new Promise((resolve,reject)=>{
 
-      // //公钥
+      //公钥
       const PUBLIC_KEY = 'MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQKBgQDI3hf95L3aMonXCgG926Gt6nwft8RnhM+6UHVieE4N58V0swNvFVU4XRrlNn4o2vU8eZ5z1c8s2AHEl65ck5kiAPjC82nCgWd4j1sdr2Wvz18B+/DT4PLZum4QzwIAviQfafp1qVbC6fYj0BLyDXmeaO5gi3X19U0kIhUPWbzAqQIDAQAB';
       // AES秘钥
       let AESKey=initKey(16);
@@ -32,22 +32,24 @@ React.getCookie=(cookieName) =>{
         headers: {
           'Content-Type': 'application/json',
           'Authorization': React.getCookie('header'),
-          // 'Access-Control-Expose-Headers':'Authorization'
+          'Access-Control-Expose-Headers':'Authorization'
         },
         method:type.toUpperCase(),
         url,
         // data:nojson?data:JSON.stringify(data),
+        // data: JSON.stringify(data),
         data:Object.prototype.toString.call(data)==='[Object FormDta]'?data:JSON.stringify({
           // 密钥
           encryptKey:encryptRSA(PUBLIC_KEY,AESKey),
           // 密文
           encryptStr:encryptAES(AESKey,JSON.stringify(data)),
         }),
-        params:params||'',
+        params:JSON.stringify(params)||'',
         responseType:blob?'blob':'json'  //或者是blob
       })
       .then(
         response=>{
+          console.log(response);
           if(typeof setLoad ==='function'){
             setLoad(0);
           }      
@@ -171,8 +173,8 @@ React.alert=(data,type, callback)=> { //回调函数
     alert_box.className='alertbox'
     // 总体显示到页面内
     document.getElementsByTagName('body')[0].appendChild(alert_box);
-var opacity=0;
-const addOpacity = () => {
+    var opacity=0;
+    const addOpacity = () => {
     var target=document.querySelector('.alertbox')
         if (target.style.opacity > 1) {
             clearInterval(time1);

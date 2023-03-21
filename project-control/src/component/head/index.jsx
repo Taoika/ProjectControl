@@ -29,7 +29,7 @@ export default function Head() {
             projectpublish={type === 0 ? '发布项目' : ''}
             projectpermission={type === 0 ? '权限查看' : ''}
             out={type !== -1 ? '退出登录' : ''}
-            username={React.getCookie('user')?React.getCookie('username'):''}
+            username={React.getCookie('user') && type === 0 ? React.getCookie('username') : ''}
         />
     )
 }

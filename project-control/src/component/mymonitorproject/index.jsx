@@ -26,7 +26,7 @@ export default function Mymonitorproject() {
     }
     React.useEffect(() => {
         setLoad({ left: '47.2895vw', top: '5.75vw' })
-        React.axios('post', 'http://106.13.18.48/monitor/api/userproject/MyProject', setLoad, '',
+        React.axios('post', 'http://39.98.41.126:31113/userproject/MyProject', setLoad, '',
             { userId: React.getCookie('user') }).then(res => {
                 let data = []
                 res.map(i => {

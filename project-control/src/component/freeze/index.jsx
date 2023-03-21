@@ -24,12 +24,12 @@ export default function Freeze(props) {
     setLoad({ left: '47.2895vw', top: '5.75vw' })
     //冻结用户
     if (props.type === 'user') {
-      React.axios('post', 'http://106.13.18.48/monitor/api/user/freezeUser', setLoad, '',
+      React.axios('post', 'http://39.98.41.126:31113/user/freezeUser', setLoad, '',
         { userId: props.id, date: time }, back, '', props.getData).then(props.getData())
     }
     //冻结项目
     if (props.type === 'project') {
-      React.axios('post', 'http://106.13.18.48/monitor/api/project/update', setLoad, '',
+      React.axios('post', 'http://39.98.41.126:31113/project/update', setLoad, '',
         { projectId: props.id, pass: '-1', time }, back, '', props.getData)
     }
   }
@@ -66,7 +66,7 @@ export default function Freeze(props) {
               }
             ]}
           >
-            <Input style={{width:'200px'}}/>
+            <Input style={{ width: '200px' }} />
           </Form.Item>
           <Form.Item
             wrapperCol={{
